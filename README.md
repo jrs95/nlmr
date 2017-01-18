@@ -6,3 +6,6 @@ These functions are used to assess the shape of exposure-outcome relationships u
 * pl_mr -
 
 # Installation
+
+
+# Example
