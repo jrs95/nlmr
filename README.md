@@ -6,8 +6,8 @@ These functions are used to assess the shape of exposure-outcome relationships u
 * plm_mr -
 
 # Installation
-1. install.packages("devel")
-2. library(devel) 
-3. install.packages("/jrs95/nl_mr")
+1. install.packages("devtools")
+2. library(devtools) 
+3. install_github("/jrs95/nl_mr")
 
 # Example
