@@ -14,4 +14,4 @@ This package is used to assess non-linear exposure-outcome relationships using i
 
 
 # Reference 
-James R Staley & Stephen Burgess, Semiparametric methods for estimation of a non-linear exposure{outcome relationship using instrumental variables with application to Mendelian randomization. bioRxiv 2017 
+James R Staley & Stephen Burgess, Semiparametric methods for estimation of a non-linear exposure-outcome relationship using instrumental variables with application to Mendelian randomization. bioRxiv 2017 
