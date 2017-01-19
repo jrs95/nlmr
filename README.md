@@ -6,7 +6,7 @@ These functions are used to assess the shape of exposure-outcome relationships u
 * pl_mr -
 
 # Installation
-library(devel)
+library(devel) \n
 install.packages("jrs95/nl_mr")
 
 # Example
