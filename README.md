@@ -3,7 +3,7 @@ These functions are used to assess the shape of exposure-outcome relationships u
 
 # Functions
 * frac_poly_mr -
-* pl_mr -
+* plm_mr -
 
 # Installation
 1. library(devel) 
