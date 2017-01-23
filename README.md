@@ -12,18 +12,13 @@ This package is used to assess non-linear exposure-outcome relationships using i
 
 # Example
 \# Instrumental variable (g), exposure (x) & outcome (y)  
-epsx = rexp(10000)
-u    = runif(10000, 0, 1)
-
-g    = rbinom(10000, 2, 0.3)
-
-epsy = rnorm(10000)
-
-ag = 0.25
-
-x = ag*g + u + epsx
-
-y = x + 0.8*u + epsy
+epsx = rexp(10000)  
+u    = runif(10000, 0, 1)  
+g    = rbinom(10000, 2, 0.3)  
+epsy = rnorm(10000)  
+ag = 0.25  
+x = ag*g + u + epsx  
+y = x + 0.8*u + epsy  
 
 \# Covariates (c) & covariate types (c_type)
 c1 = rnorm(10000)
