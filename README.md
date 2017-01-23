@@ -31,4 +31,4 @@ fp = frac_poly_mr(y, x, g, c, c_type, family="gaussian", q=10, d=1, ci="model_se
 plm = piecewise_mr(y, x, g, c, c_type, family="gaussian", q=10, nboot=5, fig=T)
 
 # Reference 
-James R Staley & Stephen Burgess, Semiparametric methods for estimation of a non-linear exposure-outcome relationship using instrumental variables with application to Mendelian randomization. bioRxiv 2017; doi: 
+James R Staley & Stephen Burgess, Semiparametric methods for estimation of a non-linear exposure-outcome relationship using instrumental variables with application to Mendelian randomization. 
