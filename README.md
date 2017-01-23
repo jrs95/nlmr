@@ -11,7 +11,7 @@ This package is used to assess non-linear exposure-outcome relationships using i
 3. install_github("/jrs95/nl_mr")
 
 # Example
-\# Instrumental variable (g), exposure (x) & outcome (y) \n
+\# Instrumental variable (g), exposure (x) & outcome (y)  
 epsx = rexp(10000)
 u    = runif(10000, 0, 1)
 
