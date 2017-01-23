@@ -20,17 +20,18 @@ ag = 0.25
 x = ag\*g + u + epsx  
 y = x + 0.8\*u + epsy  
 
-\# Covariates (c) & covariate types (c_type)
-c1 = rnorm(10000)
-c2 = rnorm(10000)
-c3 = rbinom(10000,1, 0.5)
-c4 = rbinom(10000,5, 0.5)
-c5 = rbinom(10000,1, 0.5)
-c = data.frame(c1=c1, c2=c2, c3=as.factor(c3), c4=as.factor(c4), c5=as.factor(c5))
-c_type = c("numeric", "numeric", "factor", "factor", "factor")
+\# Covariates (c) & covariate types (c_type)  
+c1 = rnorm(10000)  
+c2 = rnorm(10000)  
+c3 = rbinom(10000,1, 0.5)  
+c4 = rbinom(10000,5, 0.5)  
+c5 = rbinom(10000,1, 0.5)  
+c = data.frame(c1=c1, c2=c2, c3=as.factor(c3), c4=as.factor(c4), c5=as.factor(c5))  
+c_type = c("numeric", "numeric", "factor", "factor", "factor")  
 
-\# Analyses
-fp = frac_poly_mr(y, x, g, c, c_type, family="gaussian", q=10, d=1, ci="model_se", nboot=5, fig=T)
+\# Analyses  
+fp = frac_poly_mr(y, x, g, c, c_type, family="gaussian", q=10, d=1, ci="model_se", fig=T)  
+plm = piecewise_mr(y, x, g, c, c_type, family="gaussian", q=10, nboot=5, fig=T)
 
 # Reference 
 James R Staley & Stephen Burgess, Semiparametric methods for estimation of a non-linear exposure-outcome relationship using instrumental variables with application to Mendelian randomization. bioRxiv 2017; doi: 
