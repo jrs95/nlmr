@@ -24,8 +24,7 @@ y = x + 0.8\*u + epsy
 c1 = rnorm(10000)  
 c2 = rnorm(10000)  
 c = data.frame(c1=c1, c2=c2, c3=as.factor(c3))  
-c_type = c("numeric", "numeric", "factor")  
-c_type = c("numeric", "numeric", "factor", "factor", "factor")
+c_type = c("numeric", "numeric", "factor")
 
 \# Analyses  
 fp = frac_poly_mr(y, x, g, c, c_type, family="gaussian", q=10, d=1, ci="model_se", fig=T)  
