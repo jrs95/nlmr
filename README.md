@@ -29,8 +29,8 @@ c_type = c("numeric", "numeric", "factor")
 
 \#\#\# Analyses  
 fp = frac_poly_mr(y, x, g, c, c_type, family="gaussian", q=10, d=1, ci="model_se", fig=T)  
-summary(fp)
-plm = piecewise_mr(y, x, g, c, c_type, family="gaussian", q=10, nboot=5, fig=T)
+summary(fp)  
+plm = piecewise_mr(y, x, g, c, c_type, family="gaussian", q=10, nboot=5, fig=T)  
 summary(plm)
 
 # Reference 
