@@ -73,7 +73,7 @@ c = data.frame(c1=c1, c2=c2, c3=as.factor(c3))
 c_type = c("numeric", "numeric", "factor")
 
 ### Analyses
-fp <- frac_poly_mr(y, x, g, c, c_type, family="gaussian", q=10, d=1, ci="model_se", nboot=100, fig=T)
+fp <- frac_poly_mr(y, x, g, c, c_type, family="gaussian", q=10, d=1, ci="model_se", fig=T)
 summary(fp)
 plm <- piecewise_mr(y, x, g, c, c_type, family="gaussian", q=10, nboot=100, fig=T)
 summary(plm)
