@@ -8,7 +8,7 @@ This package is used to assess non-linear exposure-outcome relationships using i
 # Installation
 1. install.packages("devtools")
 2. library(devtools) 
-3. install_github("/jrs95/nlmr")
+3. install_github("jrs95/nlmr")
 4. library(nlmr)
 
 # Example
