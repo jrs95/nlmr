@@ -11,7 +11,7 @@
 #' @param xpos the position used to relate x to the localised average causal effect. The default is the mean of the x-values within each quantile, otherwise specify a percentile (e.g. 0.5 corresponds to the median value).
 #' @param method meta-regression method parsed to the rma package. The default is fixed-effects ("FE").
 #' @param d fractional polynomial degree. The default is degree 1. The other options are: 1, 2, or "both".
-#' @param pd p-value cut-off for choosing the best-fitting fractional polynomial of degree 2 over the best-fitting fractional polynomial degree 1. This option is only used if both . The default is 0.05.
+#' @param pd p-value cut-off for choosing the best-fitting fractional polynomial of degree 2 over the best-fitting fractional polynomial degree 1. This option is only used if d="both". The default is 0.05.
 #' @param ci the type of 95\% confidence interval. There are three options: (i) using the model standard errors ("model_se"), (ii) using bootstrap standard errors ("bootstrap_se"), (iii) using bootstrap percentile confidence intervals ("bootstrap_per"). The default is the model standard errors.
 #' @param nboot the number of bootstrap replications (if required). The default is 100 replications.
 #' @param fig a logical statement as to whether the user wants the results displayed in a figure. The default is false.
