@@ -17,14 +17,14 @@ u    = runif(10000, 0, 1)
 g    = rbinom(10000, 2, 0.3)  
 epsy = rnorm(10000)  
 ag = 0.25  
-x = 1 + ag\*g + u + epsx
+x = 1 + ag\*g + u + epsx  
 y = 0.1*x^2 + 0.8\*u + epsy 
 
 \#\#\# Covariates (c) & covariate types (c_type)  
-c1 = rnorm(10000)
-c2 = rnorm(10000)
-c3 = rbinom(10000,2,0.33)
-c = data.frame(c1=c1, c2=c2, c3=as.factor(c3))
+c1 = rnorm(10000)  
+c2 = rnorm(10000)  
+c3 = rbinom(10000,2,0.33)  
+c = data.frame(c1=c1, c2=c2, c3=as.factor(c3))  
 c_type = c("numeric", "numeric", "factor")
 
 \#\#\# Analyses  
