@@ -8,7 +8,7 @@
 #' @param c_type vector of covariate types. These can either "numeric" or "factor" depending on whether the variables are continuous or categorical.
 #' @param family a description of the error distribution and link function to be used in the model. For frac_poly_mr this can be a character string naming either the gaussian (i.e. for continuous data) or binomial (i.e. for binary data) family function.
 #' @param q the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).
-#' @param xpos the position used to relate x to the LACE. The default is the mean of the x-values within each quantile, otherwise specify a pectile (e.g. 0.5 corresponds to the median value).
+#' @param xpos the position used to relate x to the localised average causal effect. The default is the mean of the x-values within each quantile, otherwise specify a percentile (e.g. 0.5 corresponds to the median value).
 #' @param method meta-regression method parsed to the rma package. The default is fixed-effects ("FE").
 #' @param d fractional polynomial degree. The default is degree 1. The other options are: 1, 2, or "both".
 #' @param pd p-value cut-off for choosing the best-fitting fractional polynomial of degree 2 over the best-fitting fractional polynomial degree 1. This option is only used if both . The default is 0.05.
@@ -31,31 +31,19 @@
 #' @return p_tests the p-value of the non-linearity tests. The first column is the p-value of the test between the fractional polynomial degrees (fp_d1_d2); the second column is the p-value from the fractional polynomial non-linearity test (fp); the third column is the p-value from the quadratic test (quad); the fourth column is the p-value from the Cochran Q test (Q).
 #' @return p_heterogeneity the p-value of heterogeneity. The first column is the p-value of the Cochran Q heterogeneity test (Q); the second column is the p-value from the trend test (trend).
 #' @author James R Staley (js16174@bristol.ac.uk)
-#' @examples
-#' \#\#\# Instrumental variable (g), exposure (x) & outcome (y)
-#' epsx = rexp(10000)
-#' u    = runif(10000, 0, 1)
-#' g    = rbinom(10000, 2, 0.3)
-#' epsy = rnorm(10000)
-#' ag = 0.25
-#'
-#' \#\#\# Covariates (c) & covariate types (c_type)
-#' x = ag*g + u + epsx
-#' y = x + 0.8*u + epsy
-#' c1 = rnorm(10000)
-#' c2 = rnorm(10000)
-#' c3 = rbinom(10000,2,0.33)
-#' c4 = rbinom(10000,2,0.33)
-#' c = data.frame(c1=c1, c2=c2, c3=as.factor(c3))
-#' c_type = c("numeric", "numeric", "factor")
-#'
-#' \#\#\# Analyses
-#' fp <- frac_poly_mr(y, x, g, c, c_type, family="gaussian", q=10, d=1, ci="model_se", nboot=100, fig=T)
-#' summary(fp)
-#' plm <- piecewise_mr(y, x, g, c, c_type, family="gaussian", q=10, nboot=100, fig=T)
-#' summary(plm)
 #' @export
 frac_poly_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, xpos="mean", method="FE", d=1, pd=0.05, ci="model_se", nboot=100, fig=F, ref=mean(x), pref_x="x", pref_x_ref="x", pref_y="y", ci_type="overall", ci_quantile=10, breaks=NULL){
+  
+  ##### Error messages #####
+  if(!(is.vector(y) | is.vector(x) | is.vector(g))) stop('the outcome, exposure, and instrument are not all vectors')
+  if(any(is.na(y)) | any(is.na(x)) | any(is.na(g)) | any(is.na(c))) stop('there are missing values in either the outcome, exposure, instrument or covariates')
+  if(!(length(y)==length(x) & length(y)==length(g)) | (!is.null(c) & !(nrow(c)==length(y)))) stop('the number of observations for the outcome, exposure, instrument and covarites are different')
+  if((!is.null(c) | !is.null(c_type)) & ncol(c)!=length(c_type)) stop('the number of columns of the covariates matrix does not match the number of covariate types')
+  if(!(family=="gaussian" | family=="binomial")) stop('family has to be equal to either "gaussian" or "binomial"')
+  if((length(y)/10)<q) stop('the quantiles should contain at least 10 observations')
+  if(!(xpos=="mean" | (xpos>0 & xpos<1))) stop('the position used to relate x to the localised average causal effect')
+  if(!(d==1 | d==2 | d=="both")) stop('the degree has to be equal to 1, 2 or "both"')
+  if(!(ci=="model_se" | ci=="bootstrap_se" | ci=="bootstrap_per")) stop('the confidence intervals must be one of "model_se", "bootstrap_se" and "bootstrap_per"')
   
   ##### Covariates #####
   c1 <- c[,c_type!="factor"]
