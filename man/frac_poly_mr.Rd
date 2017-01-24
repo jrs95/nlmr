@@ -25,7 +25,7 @@ frac_poly_mr(y, x, g, c = NULL, c_type = NULL, family = "gaussian",
 
 \item{q}{the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).}
 
-\item{xpos}{the position used to relate x to the LACE. The default is the mean of the x-values within each quantile, otherwise specify a pectile (e.g. 0.5 corresponds to the median value).}
+\item{xpos}{the position used to relate x to the LACE. The default is the mean of the x-values within each quantile, otherwise specify a percentile (e.g. 0.5 corresponds to the median value).}
 
 \item{method}{meta-regression method parsed to the rma package. The default is fixed-effects ("FE").}
 
@@ -81,7 +81,7 @@ g    = rbinom(10000, 2, 0.3)
 epsy = rnorm(10000)
 ag = 0.25
 x = 1 + ag*g + u + epsx
-y = 0.1*x^2 + 0.8*u + epsy
+y = 0.2*x^2 + 0.8*u + epsy
 
 ### Covariates (c) & covariate types (c_type)
 c1 = rnorm(10000)
