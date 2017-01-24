@@ -5,7 +5,7 @@
 \title{Instrumental variable analysis using a piecewise linear function}
 \usage{
 piecewise_mr(y, x, g, c = NULL, c_type = NULL, family = "gaussian",
-  q = 10, nboot = 500, fig = T, ref = mean(x), pref_x = "x",
+  q = 10, nboot = 100, fig = T, ref = mean(x), pref_x = "x",
   pref_x_ref = "x", pref_y = "y", ci_quantiles = 10, breaks = NULL)
 }
 \arguments{
@@ -21,7 +21,7 @@ piecewise_mr(y, x, g, c = NULL, c_type = NULL, family = "gaussian",
 
 \item{q}{the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).}
 
-\item{nboot}{the number of bootstrap replications (if required). The default is 500 replications.}
+\item{nboot}{the number of bootstrap replications (if required). The default is 100 replications.}
 
 \item{fig}{a logical statement as to whether the user wants the results displayed in a figure. The default is false.}
 
