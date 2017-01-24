@@ -35,9 +35,10 @@
 frac_poly_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, xpos="mean", method="FE", d=1, pd=0.05, ci="model_se", nboot=100, fig=F, ref=mean(x), pref_x="x", pref_x_ref="x", pref_y="y", ci_type="overall", ci_quantile=10, breaks=NULL){
   
   ##### Error messages #####
-  if(!(is.vector(y) | is.vector(x) | is.vector(g))) stop('the outcome, exposure, and instrument are not all vectors')
-  if(any(is.na(y)) | any(is.na(x)) | any(is.na(g)) | any(is.na(c))) stop('there are missing values in either the outcome, exposure, instrument or covariates')
-  if(!(length(y)==length(x) & length(y)==length(g)) | (!is.null(c) & !(nrow(c)==length(y)))) stop('the number of observations for the outcome, exposure, instrument and covarites are different')
+  if(!(is.vector(y) | is.vector(x) | is.vector(g))) stop('either the outcome, exposure or instrument is not a vector')
+  if(length(y)<=1) stop('the outcome is less than or equal to a single value')
+  if(!(length(y)==length(x) & length(y)==length(g)) | (if(!is.null(c)){(nrow(c)!=length(y))}else{FALSE})) stop('the number of observations for the outcome, exposure, instrument and covarites are different')
+  if(any(is.na(y)) | any(is.na(x)) | any(is.na(g)) | (if(!is.null(c)){any(is.na(c))}else{FALSE})) stop('there are missing values in either the outcome, exposure, instrument or covariates')
   if((!is.null(c) | !is.null(c_type)) & ncol(c)!=length(c_type)) stop('the number of columns of the covariates matrix does not match the number of covariate types')
   if(!(family=="gaussian" | family=="binomial")) stop('family has to be equal to either "gaussian" or "binomial"')
   if((length(y)/10)<q) stop('the quantiles should contain at least 10 observations')
