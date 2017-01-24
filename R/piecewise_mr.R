@@ -7,7 +7,7 @@
 #' @param c_type vector of covariate types. These can either "numeric" or "factor" depending on whether the variables are continuous or categorical.
 #' @param family a description of the error distribution and link function to be used in the model. For frac_poly_mr this can be a character string naming either the gaussian (i.e. for continuous data) or binomial (i.e. for binary data) family function.
 #' @param q the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).
-#' @param nboot the number of bootstrap replications (if required). The default is 500 replications.
+#' @param nboot the number of bootstrap replications (if required). The default is 100 replications.
 #' @param fig a logical statement as to whether the user wants the results displayed in a figure. The default is false.
 #' @param ref the reference point for the figure. This is the value of the function that represents the expected difference in the outcome compared with this reference value when the exposure is set to different values. The default is the mean of x.
 #' @param pref_x the prefix/label for the x-axis. The default is "x".
@@ -47,7 +47,7 @@
 #' plm <- piecewise_mr(y, x, g, c, c_type, family="gaussian", q=10, nboot=100, fig=T)
 #' summary(plm)
 #' @export
-piecewise_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, nboot=500, fig=T, ref=mean(x), pref_x="x", pref_x_ref="x", pref_y="y", ci_quantiles=10, breaks=NULL){
+piecewise_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, nboot=100, fig=T, ref=mean(x), pref_x="x", pref_x_ref="x", pref_y="y", ci_quantiles=10, breaks=NULL){
   
   ##### Covariates #####
   c1 <- c[,c_type!="factor"]
