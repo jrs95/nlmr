@@ -12,7 +12,7 @@ This package is used to assess non-linear exposure-outcome relationships using i
 4. library(nlmr)
 
 # Example
-\#\#\# Instrumental variable (g), exposure (x) & outcome (y)  
+\#\#\# IV (g), exposure (x) & outcome (y)  
 epsx = rexp(10000)  
 u    = runif(10000, 0, 1)  
 g    = rbinom(10000, 2, 0.3)  
