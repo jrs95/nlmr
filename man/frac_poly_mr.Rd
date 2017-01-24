@@ -31,7 +31,7 @@ frac_poly_mr(y, x, g, c = NULL, c_type = NULL, family = "gaussian",
 
 \item{d}{fractional polynomial degree. The default is degree 1. The other options are: 1, 2, or "both".}
 
-\item{pd}{p-value cut-off for choosing the best-fitting fractional polynomial of degree 2 over the best-fitting fractional polynomial degree 1. This option is only used if both . The default is 0.05.}
+\item{pd}{p-value cut-off for choosing the best-fitting fractional polynomial of degree 2 over the best-fitting fractional polynomial degree 1. This option is only used if d="both". The default is 0.05.}
 
 \item{ci}{the type of 95\% confidence interval. There are three options: (i) using the model standard errors ("model_se"), (ii) using bootstrap standard errors ("bootstrap_se"), (iii) using bootstrap percentile confidence intervals ("bootstrap_per"). The default is the model standard errors.}
 
