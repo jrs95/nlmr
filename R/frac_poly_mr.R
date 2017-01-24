@@ -13,7 +13,7 @@
 #' @param d fractional polynomial degree. The default is degree 1. The other options are: 1, 2, or "both".
 #' @param pd p-value cut-off for choosing the best-fitting fractional polynomial of degree 2 over the best-fitting fractional polynomial degree 1. This option is only used if both . The default is 0.05.
 #' @param ci the type of 95\% confidence interval. There are three options: (i) using the model standard errors ("model_se"), (ii) using bootstrap standard errors ("bootstrap_se"), (iii) using bootstrap percentile confidence intervals ("bootstrap_per"). The default is the model standard errors.
-#' @param nboot the number of bootstrap replications (if required). The default is 500 replications.
+#' @param nboot the number of bootstrap replications (if required). The default is 100 replications.
 #' @param fig a logical statement as to whether the user wants the results displayed in a figure. The default is false.
 #' @param ref the reference point for the figure. This is the value of the function that represents the expected difference in the outcome compared with this reference value when the exposure is set to different values. The default is the mean of x.
 #' @param pref_x the prefix/label for the x-axis. The default is "x".
@@ -55,7 +55,7 @@
 #' plm <- piecewise_mr(y, x, g, c, c_type, family="gaussian", q=10, nboot=100, fig=T)
 #' summary(plm)
 #' @export
-frac_poly_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, xpos="mean", method="FE", d=1, pd=0.05, ci="model_se", nboot=500, fig=F, ref=mean(x), pref_x="x", pref_x_ref="x", pref_y="y", ci_type="overall", ci_quantile=10, breaks=NULL){
+frac_poly_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, xpos="mean", method="FE", d=1, pd=0.05, ci="model_se", nboot=100, fig=F, ref=mean(x), pref_x="x", pref_x_ref="x", pref_y="y", ci_type="overall", ci_quantile=10, breaks=NULL){
   
   ##### Covariates #####
   c1 <- c[,c_type!="factor"]
