@@ -6,7 +6,7 @@
 \usage{
 frac_poly_mr(y, x, g, c = NULL, c_type = NULL, family = "gaussian",
   q = 10, xpos = "mean", method = "FE", d = 1, pd = 0.05,
-  ci = "model_se", nboot = 500, fig = F, ref = mean(x), pref_x = "x",
+  ci = "model_se", nboot = 100, fig = F, ref = mean(x), pref_x = "x",
   pref_x_ref = "x", pref_y = "y", ci_type = "overall", ci_quantile = 10,
   breaks = NULL)
 }
@@ -35,7 +35,7 @@ frac_poly_mr(y, x, g, c = NULL, c_type = NULL, family = "gaussian",
 
 \item{ci}{the type of 95\% confidence interval. There are three options: (i) using the model standard errors ("model_se"), (ii) using bootstrap standard errors ("bootstrap_se"), (iii) using bootstrap percentile confidence intervals ("bootstrap_per"). The default is the model standard errors.}
 
-\item{nboot}{the number of bootstrap replications (if required). The default is 500 replications.}
+\item{nboot}{the number of bootstrap replications (if required). The default is 100 replications.}
 
 \item{fig}{a logical statement as to whether the user wants the results displayed in a figure. The default is false.}
 
