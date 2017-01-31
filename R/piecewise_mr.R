@@ -218,6 +218,7 @@ print.piecewise_mr <- function(x, ...){
   cat("\n\nCoefficients:\n")
   cat(x$lace[,1])
   cat("\n\n")
+  if(!is.null(x$figure)){plot(x$figure)}
 }
 
 
@@ -234,7 +235,8 @@ summary.piecewise_mr <- function(x, ...){
   #coefficients$ci <- paste0("(",coefficients$lci,", ",coefficients$uci,")")
   p_tests <- as.data.frame(x$p_tests)
   p_heterogeneity <- as.data.frame(x$p_heterogeneity)
-  summ <- list(model=model, n=n, coefficients=coefficients, p_tests=p_tests, p_heterogeneity=p_heterogeneity)
+  if(is.null(x$figure)){summ <- list(model=model, n=n, coefficients=coefficients, p_tests=p_tests, p_heterogeneity=p_heterogeneity)}
+  if(!is.null(x$figure)){summ <- list(model=model, n=n, coefficients=coefficients, p_tests=p_tests, p_heterogeneity=p_heterogeneity, figure=x$figure)}
   class(summ) <- "summary.piecewise_mr"
   return(summ)
 }
@@ -258,4 +260,5 @@ print.summary.piecewise_mr <- function(x, ...){
   cat("\n\nHeterogeneity tests")
   cat("\nCochran Q p-value:", signif(x$p_heterogeneity$Q, digits=3))
   cat("\nTrend p-value:", signif(x$p_heterogeneity$trend, digits=3))
+  if(!is.null(x$figure)){plot(x$figure)}
 }
