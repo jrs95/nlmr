@@ -35,4 +35,4 @@ plm = piecewise_mr(y, x, g, c, c_type, family="gaussian", q=10, nboot=50, fig=T)
 summary(plm)
 
 # Reference 
-James R Staley & Stephen Burgess, Semiparametric methods for estimation of a non-linear exposure-outcome relationship using instrumental variables with application to Mendelian randomization. doi: https://doi.org/10.1101/103986 
+James R Staley & Stephen Burgess, Semiparametric methods for estimation of a non-linear exposure-outcome relationship using instrumental variables with application to Mendelian randomization. Genetic Epidemiology. 2017; doi: https://doi.org/10.1002/gepi.22041
