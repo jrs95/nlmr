@@ -380,5 +380,6 @@ print.summary.frac_poly_mr <- function(x, ...){
   cat("\n\nHeterogeneity tests")
   cat("\nCochran Q p-value:", signif(x$p_heterogeneity$Q, digits=3))
   cat("\nTrend p-value:", signif(x$p_heterogeneity$trend, digits=3))
+  cat("\n")
   if(!is.null(x$figure)){plot(x$figure)}
 }
