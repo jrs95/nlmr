@@ -79,6 +79,6 @@ plm <- piecewise_mr(y, x, g, c, c_type, family="gaussian", q=10, nboot=50, fig=T
 summary(plm)
 }
 \author{
-James R Staley <js16174@bristol.ac.uk>
+James R Staley (js16174@bristol.ac.uk)
 }
 
