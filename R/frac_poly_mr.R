@@ -30,7 +30,7 @@
 #' @return xcoef the association between the instrument and the exposure in each quantile. The first column is the regression coefficients (beta); the second column is the standard errors of regression coefficients (se).
 #' @return p_tests the p-value of the non-linearity tests. The first column is the p-value of the test between the fractional polynomial degrees (fp_d1_d2); the second column is the p-value from the fractional polynomial non-linearity test (fp); the third column is the p-value from the quadratic test (quad); the fourth column is the p-value from the Cochran Q test (Q).
 #' @return p_heterogeneity the p-value of heterogeneity. The first column is the p-value of the Cochran Q heterogeneity test (Q); the second column is the p-value from the trend test (trend).
-#' @author James R Staley (js16174@bristol.ac.uk)
+#' @author James R Staley <js16174@bristol.ac.uk>
 #' @export
 frac_poly_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, xpos="mean", method="FE", d=1, pd=0.05, ci="model_se", nboot=100, fig=F, ref=mean(x), pref_x="x", pref_x_ref="x", pref_y="y", ci_type="overall", ci_quantile=10, breaks=NULL){
   
@@ -320,7 +320,7 @@ frac_poly_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, 
 #'
 #' print method for class "frac_poly_mr".
 #' @param x an object of class "frac_poly_mr".
-#' @author James R Staley (js16174@bristol.ac.uk)
+#' @author James R Staley <js16174@bristol.ac.uk>
 #' @export
 print.frac_poly_mr <- function(x, ...){
   cat("\nCall: \nfrac_poly_mr")
@@ -337,7 +337,7 @@ print.frac_poly_mr <- function(x, ...){
 #'
 #' summary method for class "frac_poly_mr".
 #' @param x an object of class "frac_poly_mr".
-#' @author James R Staley (js16174@bristol.ac.uk)
+#' @author James R Staley <js16174@bristol.ac.uk>
 #' @export
 summary.frac_poly_mr <- function(x, ...){
   model <- as.data.frame(x$model)
@@ -359,7 +359,7 @@ summary.frac_poly_mr <- function(x, ...){
 #'
 #' print.summary method for class "frac_poly_mr".
 #' @param x an object of class "frac_poly_mr".
-#' @author James R Staley (js16174@bristol.ac.uk)
+#' @author James R Staley <js16174@bristol.ac.uk>
 #' @export
 print.summary.frac_poly_mr <- function(x, ...){
   cat("Call: frac_poly_mr")
