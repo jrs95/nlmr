@@ -13,6 +13,6 @@
 summary method for class "frac_poly_mr".
 }
 \author{
-James R Staley <js16174@bristol.ac.uk>
+James R Staley (js16174@bristol.ac.uk)
 }
 
