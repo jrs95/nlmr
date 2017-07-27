@@ -22,7 +22,7 @@
 #' @return xcoef the association between the instrument and the exposure in each quantile. The first column is the regression coefficients (beta); the second column is the standard errors of regression coefficients (se).
 #' @return p_tests the p-value of the non-linearity tests. The first column is the p-value of the test between the fractional polynomial degrees (fp_d1_d2); the second column is the p-value from the fractional polynomial non-linearity test (fp); the third column is the p-value from the quadratic test (quad); the fourth column is the p-value from the Cochran Q test (Q).
 #' @return p_heterogeneity the p-value of heterogeneity. The first column is the p-value of the Cochran Q heterogeneity test (Q); the second column is the p-value from the trend test (trend).
-#' @author James R Staley (js16174@bristol.ac.uk)
+#' @author James R Staley <js16174@bristol.ac.uk>
 #' @export
 piecewise_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, nboot=100, fig=T, ref=mean(x), pref_x="x", pref_x_ref="x", pref_y="y", ci_quantiles=10, breaks=NULL){
 
@@ -211,7 +211,7 @@ piecewise_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, 
 #'
 #' print method for class "piecewise_mr".
 #' @param x an object of class "piecewise_mr".
-#' @author James R Staley (js16174@bristol.ac.uk)
+#' @author James R Staley <js16174@bristol.ac.uk>
 #' @export
 print.piecewise_mr <- function(x, ...){
   cat("\nCall: \npiecewise_mr")
@@ -226,7 +226,7 @@ print.piecewise_mr <- function(x, ...){
 #'
 #' summary method for class "piecewise_mr".
 #' @param x an object of class "piecewise_mr".
-#' @author James R Staley (js16174@bristol.ac.uk)
+#' @author James R Staley <js16174@bristol.ac.uk>
 #' @export
 summary.piecewise_mr <- function(x, ...){
   model <- as.data.frame(x$model)
@@ -246,7 +246,7 @@ summary.piecewise_mr <- function(x, ...){
 #'
 #' print summary method for class "piecewise_mr".
 #' @param x an object of class "piecewise_mr".
-#' @author James R Staley (js16174@bristol.ac.uk)
+#' @author James R Staley <js16174@bristol.ac.uk>
 #' @export
 print.summary.piecewise_mr <- function(x, ...){
   cat("Call: piecewise_mr")
@@ -260,5 +260,6 @@ print.summary.piecewise_mr <- function(x, ...){
   cat("\n\nHeterogeneity tests")
   cat("\nCochran Q p-value:", signif(x$p_heterogeneity$Q, digits=3))
   cat("\nTrend p-value:", signif(x$p_heterogeneity$trend, digits=3))
+  cat("\n")
   if(!is.null(x$figure)){plot(x$figure)}
 }
