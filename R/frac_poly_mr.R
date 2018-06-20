@@ -102,8 +102,6 @@ frac_poly_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, 
     }
   }
   
-  print("DONE")
-  
   ##### Test of IV-exposure assumption #####
   p_het <- 1- pchisq(rma(xcoef_sub, vi=(xcoef_sub_se)^2)$QE, df=(q-1))
   p_het_trend <- rma.uni(xcoef_sub ~ xmean, vi=xcoef_sub_se^2, method=method)$pval[2]
