@@ -86,9 +86,7 @@ frac_poly_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, 
       frac_se[i] <- summary(lm(y[x0_quantiles==i]~g[x0_quantiles==i]+c1[x0_quantiles==i,]+c2[x0_quantiles==i,]))$coef[2,2]
     }
     if(family=="binomial"){
-      print(nrow(c1)); print(nrow(c2)); print(length(y)); print(length(g)); print(length(x0_quantiles)); print(table(x0_quantiles==i))
       frac_coef[i] <- glm(y[x0_quantiles==i]~g[x0_quantiles==i]+c1[x0_quantiles==i,]+c2[x0_quantiles==i,], family=binomial)$coef[2]
-      print(table(x0_quantiles==i))
       frac_se[i] <- summary(glm(y[x0_quantiles==i]~g[x0_quantiles==i]+c1[x0_quantiles==i,]+c2[x0_quantiles==i,], family=binomial))$coef[2,2]
     }
     if(xpos=="mean"){xmean[i] <- mean(x[x0_quantiles==i])}
@@ -98,8 +96,9 @@ frac_poly_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, 
       xcoef_sub_se[i] <- summary(lm(x[x0_quantiles==i]~g[x0_quantiles==i]+c1[x0_quantiles==i,]+c2[x0_quantiles==i,]))$coef[2,2]
     }
     if(family=="binomial"){
-      xcoef_sub[i] <- lm(x[x0_quantiles==i]~g[x0_quantiles==i]+c1[x0_quantiles==i,]+c2[x0_quantiles==i,], subset=dataset$y==0)$coef[2]
-      xcoef_sub_se[i] <- summary(lm(x[x0_quantiles==i]~g[x0_quantiles==i]+c1[x0_quantiles==i,]+c2[x0_quantiles==i,], subset=dataset$y==0))$coef[2,2]
+      dataset <- data.frame(y=y, x=x, g=g); dataset <- cbind(dataset, c1); dataset <- cbind(dataset, c2); dataset <- dataset[x0_quantiles==i,]
+      xcoef_sub[i] <- lm(x~g+c1+c2, data=dataset, subset=dataset$y==0)$coef[2]
+      xcoef_sub_se[i] <- summary(lm(x~g+c1+c2, data=dataset, subset=dataset$y==0))$coef[2,2]
     }
   }
   
