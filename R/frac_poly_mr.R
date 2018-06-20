@@ -66,6 +66,7 @@ frac_poly_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, 
   ##### x0 (IV-Free) #####
   if(family=="gaussian"){x0 <- resid(lm(x~g+c1+c2)); xcoef <- lm(x~g+c1+c2)$coef[2]}
   if(family=="binomial"){dataset <- data.frame(y=y, x=x, g=g); dataset <- cbind(dataset, c1); dataset <- cbind(dataset, c2); model <- lm(x~g+c1+c2, data=dataset, subset=dataset$y==0); x0 <- x - predict(model, newdata=dataset); xcoef <- summary(model)$coefficients[2,1]}
+  print(length(x0))
   prob <- (100/q)/100
   quantiles <- quantile(x0, probs=seq(0,1, prob))
   x0_quantiles <- cut(x0, quantiles, include.lowest=T)
