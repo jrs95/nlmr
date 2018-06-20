@@ -88,6 +88,7 @@ frac_poly_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, 
     if(family=="binomial"){
       print(nrow(c1)); print(nrow(c2)); print(length(y)); print(length(g)); print(length(x0_quantiles)); print(table(x0_quantiles==i))
       frac_coef[i] <- glm(y[x0_quantiles==i]~g[x0_quantiles==i]+c1[x0_quantiles==i,]+c2[x0_quantiles==i,], family=binomial)$coef[2]
+      print(table(x0_quantiles==i))
       frac_se[i] <- summary(glm(y[x0_quantiles==i]~g[x0_quantiles==i]+c1[x0_quantiles==i,]+c2[x0_quantiles==i,], family=binomial))$coef[2,2]
     }
     if(xpos=="mean"){xmean[i] <- mean(x[x0_quantiles==i])}
