@@ -84,8 +84,9 @@ piecewise_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, 
       xcoef_sub_se[i] <- summary(lm(x[x0_quantiles==i]~g[x0_quantiles==i]+c1[x0_quantiles==i,]+c2[x0_quantiles==i,], data=data))$coef[2,2]
     }
     if(family=="binomial"){
-      xcoef_sub[i] <- lm(x[x0_quantiles==i]~g[x0_quantiles==i]+c1[x0_quantiles==i,]+c2[x0_quantiles==i,], subset=dataset$y==0, data=data)$coef[2]
-      xcoef_sub_se[i] <- summary(lm(x[x0_quantiles==i]~g[x0_quantiles==i]+c1[x0_quantiles==i,]+c2[x0_quantiles==i,], subset=dataset$y==0, data=data))$coef[2,2]
+      datas <- dataset[x0_quantiles==i,]
+      xcoef_sub[i] <- lm(x~g+c1+c2, data=datas, subset=datas$y==0)$coef[2]
+      xcoef_sub_se[i] <- summary(lm(x~g+c1+c2, data=datas, subset=datas$y==0))$coef[2,2]
     }
   }
   
