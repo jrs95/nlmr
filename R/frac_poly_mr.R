@@ -65,7 +65,7 @@ frac_poly_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, 
   
   ##### x0 (IV-Free) #####
   if(family=="gaussian"){x0 <- resid(lm(x~g+c1+c2)); xcoef <- lm(x~g+c1+c2)$coef[2]; print(summary(lm(x~g+c1+c2)))}
-  if(family=="binomial"){dataset <- data.frame(y=y, x=x, g=g); dataset <- cbind(dataset, c1); dataset <- cbind(dataset, c2); model <- lm(x~g+c1+c2, data=dataset, subset=dataset$y==0); print(model); x0 <- x - predict(model, newdata=dataset); xcoef <- summary(model)$coefficients[2,1]}
+  if(family=="binomial"){dataset <- data.frame(y=y, x=x, g=g); dataset <- cbind(dataset, c1); dataset <- cbind(dataset, c2); model <- lm(x~g+., data=dataset[,!(names(datas)%in%c("y"))], subset=dataset$y==0); print(model); x0 <- x - predict(model, newdata=dataset); xcoef <- summary(model)$coefficients[2,1]}
   prob <- (100/q)/100
   quantiles <- quantile(x0, probs=seq(0,1, prob))
   x0_quantiles <- cut(x0, quantiles, include.lowest=T)
@@ -98,7 +98,7 @@ frac_poly_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, 
       datas <- dataset[x0_quantiles==i,]
       print(summary(lm(x~g+., data=datas[,!(names(datas)%in%c("y"))], subset=datas$y==0)))
       xcoef_sub[i] <- lm(x~g+., data=datas[,!(names(datas)%in%c("y"))], subset=datas$y==0)$coef[2]
-      xcoef_sub_se[i] <- summary(lm(x~g+c1+c2, data=datas[,!(names(datas)%in%c("y"))], subset=datas$y==0))$coef[2,2]
+      xcoef_sub_se[i] <- summary(lm(x~g+., data=datas[,!(names(datas)%in%c("y"))], subset=datas$y==0))$coef[2,2]
     }
   }
   
