@@ -63,7 +63,6 @@ piecewise_mr <- function(y, x, g, c=NULL, c_type=NULL, family="gaussian", q=10, 
   N <- nrow(data)
   
   ##### LACE in each quantile #####
-  xcoef <- lm(x~g+c1+c2)$coef[2]
   coef <- NULL
   se <- NULL
   xmean<-NULL
