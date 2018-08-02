@@ -21,7 +21,7 @@ ag = 0.25
 x = 1 + ag\*g + u + epsx  
 y = 0.15\*x^2 + 0.8\*u + epsy 
 
-\#\#\# Covariates (c) 
+\#\#\# Covariates (c)  
 c1 = rnorm(10000)  
 c2 = rnorm(10000)  
 c3 = rbinom(10000,2,0.33)  
