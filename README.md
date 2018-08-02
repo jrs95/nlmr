@@ -26,12 +26,11 @@ c1 = rnorm(10000)
 c2 = rnorm(10000)  
 c3 = rbinom(10000,2,0.33)  
 c = data.frame(c1=c1, c2=c2, c3=as.factor(c3))  
-c_type = c("numeric", "numeric", "factor")
 
 \#\#\# Analyses  
-fp = frac_poly_mr(y, x, g, c, c_type, family="gaussian", q=10, d=1, ci="model_se", fig=T)  
+fp = frac_poly_mr(y, x, g, c, family="gaussian", q=10, d=1, ci="model_se", fig=T)  
 summary(fp)  
-plm = piecewise_mr(y, x, g, c, c_type, family="gaussian", q=10, nboot=50, fig=T)  
+plm = piecewise_mr(y, x, g, c, family="gaussian", q=10, nboot=50, fig=T)  
 summary(plm)
 
 # Reference 
