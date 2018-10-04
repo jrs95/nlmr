@@ -263,7 +263,7 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
   }
   
   maxlik_d1 <- max(likelihood_d1)
-  p_ML <- powers[which.max(rank(likelihood_d1, ties.method = "last", na.last=FALSE))]
+  p_ML <- powers[which.max(rank(likelihood_d1, ties.method = "first", na.last=FALSE))]
   fp_p <- 1 - pchisq(((-2*likelihood_d1[6]) - (-2*maxlik_d1)), df=1)
 
   # FP degree 2
@@ -297,8 +297,8 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
   }
 
   maxlik_d2 <- max(likelihood_d2, na.rm=T)
-  p1_ML <- powers_d2[which.max(rank(likelihood_d2, ties.method = "last", na.last=FALSE)),1]
-  p2_ML <- powers_d2[which.max(rank(likelihood_d2, ties.method = "last", na.last=FALSE)),2]
+  p1_ML <- powers_d2[which.max(rank(likelihood_d2, ties.method = "first", na.last=FALSE)),1]
+  p2_ML <- powers_d2[which.max(rank(likelihood_d2, ties.method = "first", na.last=FALSE)),2]
   fp_d12_p <- 1 - pchisq(((-2*maxlik_d1) - (-2*maxlik_d2)),df=2)
   
   # Model
