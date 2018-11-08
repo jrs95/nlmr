@@ -424,7 +424,7 @@ fracpoly_figure <- function(beta, cov, x.min, x.max, family="gaussian", d=1, p_M
       if(p_ML!=-1){
         plot.data$yest <- beta*plot.data$x^(p_ML+1) - beta*ref^(p_ML+1)
         if(ci!="bootstrap_per"){
-          plot.data$yse <- sqrt((plot.data$x^(p_ML+1)-ref^(p_ML+1))^2*cov)
+          plot.data$yse <- sqrt((plot.data$x^(p_ML+1)-ref^(p_ML+1))^2*cov[1,1])
           plot.data$lci <- plot.data$yest - 1.96*plot.data$yse
           plot.data$uci <- plot.data$yest + 1.96*plot.data$yse
         }else{
