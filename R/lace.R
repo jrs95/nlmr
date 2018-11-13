@@ -48,7 +48,7 @@ iv_free <- function(y, x, g, covar, q, family="gaussian"){
     xcoef <- model$coef[2]
   }
   quantiles <- quantile(x0, probs=seq(0,1,1/q))
-  x0q <- cut(x0, quantiles, include.lowest=T, labels=FALSE)
+  x0q <- cut(x0, quantiles, include.lowest=T, labels=F)
   results <- list(xcoef=xcoef, x0=x0, x0q=x0q)
   return(results)
 }
