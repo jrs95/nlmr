@@ -47,7 +47,7 @@ iv_free <- function(y, x, g, covar, q, family="gaussian"){
     x0 <- x - (model$coef[1] + model$coef[2]*g + rowSums(hamardman.prod(model$coef[3:length(model$coef)],covar)))
     xcoef <- model$coef[2]
   }
-  prob <- (100/q)/100
+  prob <- 1/q
   quantiles <- quantile(x0, probs=seq(0,1, prob))
   x0q <- cut(x0, quantiles, include.lowest=T)
   x0q <- as.numeric(x0q)
