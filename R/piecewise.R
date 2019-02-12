@@ -45,12 +45,13 @@
 #' summary(fp)
 #' plm = piecewise_mr(y, x, g, c, family="gaussian", q=10, nboot=100, fig=T)
 #' summary(plm)
-#' @author James R Staley <js16174@bristol.ac.uk>
+#' @author James R Staley <james.staley@bristol.ac.uk>
 #' @export
 piecewise_mr <- function(y, x, g, covar=NULL, family="gaussian", q=10, xpos="mean", nboot=100, fig=T, ref=mean(x), pref_x="x", pref_x_ref="x", pref_y="y", ci_quantiles=10, breaks=NULL){
   
   ##### Error messages #####
-  if(!(is.vector(y) | is.vector(x) | is.vector(g))) stop('either the outcome, exposure or instrument is not a vector')
+  if(!(is.vector(y) & is.vector(x) & is.vector(g))) stop('either the outcome, exposure or instrument is not a vector')
+  if(!((is.numeric(y) | is.integer(y)) & (is.numeric(x) | is.integer(x)) & (is.numeric(g) | is.integer(g)))) stop('either the outcome, exposure or instrument is not numeric')
   if(length(y)<=1) stop('the outcome is less than or equal to a single value')
   if(!(length(y)==length(x) & length(y)==length(g)) | (if(!is.null(covar)){(nrow(covar)!=length(y))}else{FALSE})) stop('the number of observations for the outcome, exposure, instrument and covarites are different')
   if(any(is.na(y)) | any(is.na(x)) | any(is.na(g)) | (if(!is.null(covar)){any(is.na(covar))}else{FALSE})) stop('there are missing values in either the outcome, exposure, instrument or covariates')
