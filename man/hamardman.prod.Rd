@@ -9,7 +9,7 @@ hamardman.prod(coef, covar)
 \arguments{
 \item{coef}{vector of regression coefficients.}
 
-\item{covar}{a matrix of covairates}
+\item{covar}{a matrix of covariates}
 }
 \description{
 hamardman.prod computes the Hamardman product of a vector of regression coefficients and a matrix of covariates.
