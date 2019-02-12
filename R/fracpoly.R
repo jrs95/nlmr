@@ -51,16 +51,18 @@
 #' summary(fp)
 #' plm = piecewise_mr(y, x, g, c, family="gaussian", q=10, nboot=100, fig=T)
 #' summary(plm)
-#' @author James R Staley <js16174@bristol.ac.uk>
+#' @author James R Staley <james.staley@bristol.ac.uk>
 #' @export
 fracpoly_mr <- function(y, x, g, covar=NULL, family="gaussian", q=10, xpos="mean", method="FE", d=1, pd=0.05, ci="model_se", nboot=100, fig=F, ref=mean(x), pref_x="x", pref_x_ref="x", pref_y="y", ci_type="overall", ci_quantiles=10, breaks=NULL){
   
   ##### Error messages #####
-  if(!(is.vector(y) | is.vector(x) | is.vector(g))) stop('either the outcome, exposure or instrument is not a vector')
+  if(!(is.vector(y) & is.vector(x) & is.vector(g))) stop('either the outcome, exposure or instrument is not a vector')
+  if(!((is.numeric(y) | is.integer(y)) & (is.numeric(x) | is.integer(x)) & (is.numeric(g) | is.integer(g)))) stop('either the outcome, exposure or instrument is not numeric')
   if(length(y)<=1) stop('the outcome is less than or equal to a single value')
   if(!(length(y)==length(x) & length(y)==length(g)) | (if(!is.null(covar)){(nrow(covar)!=length(y))}else{FALSE})) stop('the number of observations for the outcome, exposure, instrument and covarites are different')
   if(any(is.na(y)) | any(is.na(x)) | any(is.na(g)) | (if(!is.null(covar)){any(is.na(covar))}else{FALSE})) stop('there are missing values in either the outcome, exposure, instrument or covariates')
   if(!(family=="gaussian" | family=="binomial")) stop('family has to be equal to either "gaussian" or "binomial"')
+  if(family=="binomial"){if(any(!(y==1 | y==0))) stop('y has to be 0 or 1 if family is equal to "binomial"')}
   if((length(y)/10)<q) stop('the quantiles should contain at least 10 observations')
   if(!(xpos=="mean" | (xpos>0 & xpos<1))) stop('the position used to relate x to the localised average causal effect')
   if(!(d==1 | d==2 | d=="both")) stop('the degree has to be equal to 1, 2 or "both"')
