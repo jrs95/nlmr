@@ -13,7 +13,7 @@ iv_free(y, x, g, covar, q, family = "gaussian")
 
 \item{g}{the instrumental variable.}
 
-\item{covar}{data.frame of covariates.}
+\item{covar}{a matrix of covariates.}
 
 \item{q}{the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).}
 
