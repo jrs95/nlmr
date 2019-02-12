@@ -56,6 +56,7 @@ piecewise_mr <- function(y, x, g, covar=NULL, family="gaussian", q=10, xpos="mea
   if(!(length(y)==length(x) & length(y)==length(g)) | (if(!is.null(covar)){(nrow(covar)!=length(y))}else{FALSE})) stop('the number of observations for the outcome, exposure, instrument and covarites are different')
   if(any(is.na(y)) | any(is.na(x)) | any(is.na(g)) | (if(!is.null(covar)){any(is.na(covar))}else{FALSE})) stop('there are missing values in either the outcome, exposure, instrument or covariates')
   if(!(family=="gaussian" | family=="binomial")) stop('family has to be equal to either "gaussian" or "binomial"')
+  if(family=="binomial"){if(any(!(y==1 | y==0))) stop('y has to be 0 or 1 if family is equal to "binomial"')}
   if((length(y)/10)<q) stop('the quantiles should contain at least 10 observations')
   
   ##### Covariates #####
