@@ -45,9 +45,11 @@ iv_free <- function(y, x, g, covar, q, family="gaussian"){
   if(family=="binomial"){
     if(!is.null(covar)){
       model <- lm(x[y==0]~g[y==0]+covar[y==0,])
+      if(any(is.na(model$coef))) stop("there are missing regression coefficients in the regression of the exposure on covariates in the controls")
       x0 <- x - (model$coef[1] + model$coef[2]*g + rowSums(hamardman.prod(model$coef[3:length(model$coef)],covar)))
     }else{
       model <- lm(x[y==0]~g[y==0])
+      if(any(is.na(model$coef))) stop("there are missing regression coefficients in the regression of the exposure on covariates in the controls")
       x0 <- x - (model$coef[1] + model$coef[2]*g)
     }
     xcoef <- model$coef[2]
