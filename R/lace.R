@@ -38,13 +38,18 @@ hamardman.prod <- function(coef, covar){
 #' @export
 iv_free <- function(y, x, g, covar, q, family="gaussian"){
   if(family=="gaussian"){
-    model <- lm(x~g+covar)
+    if(!is.null(covar)){model <- lm(x~g+covar)}else{model <- lm(x~g)}
     x0 <- resid(model)
     xcoef <- model$coef[2]
   }
   if(family=="binomial"){
-    model <- lm(x[y==0]~g[y==0]+covar[y==0,])
-    x0 <- x - (model$coef[1] + model$coef[2]*g + rowSums(hamardman.prod(model$coef[3:length(model$coef)],covar)))
+    if(!is.null(covar)){
+      model <- lm(x[y==0]~g[y==0]+covar[y==0,])
+      x0 <- x - (model$coef[1] + model$coef[2]*g + rowSums(hamardman.prod(model$coef[3:length(model$coef)],covar)))
+    }else{
+      model <- lm(x[y==0]~g[y==0])
+      x0 <- x - (model$coef[1] + model$coef[2]*g)
+    }
     xcoef <- model$coef[2]
   }
   quantiles <- quantile(x0, probs=seq(0,1,1/q))
