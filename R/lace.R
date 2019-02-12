@@ -13,7 +13,7 @@ reprow<-function(x,n){
 #'
 #' hamardman.prod computes the Hamardman product of a vector of regression coefficients and a matrix of covariates.
 #' @param coef vector of regression coefficients.
-#' @param covar a matrix of covairates
+#' @param covar a matrix of covariates
 #' @author James R Staley <js16174@bristol.ac.uk>
 #' @export
 hamardman.prod <- function(coef, covar){
@@ -29,7 +29,7 @@ hamardman.prod <- function(coef, covar){
 #' @param x vector of exposure values.
 #' @param g the instrumental variable.
 #' @param q the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).
-#' @param covar data.frame of covariates.
+#' @param covar a matrix of covariates.
 #' @param family a description of the error distribution and link function to be used in the model (either gaussian or binomial can be specified).
 #' @return \item{xcoef}{the association between the exposure and the instrument.} 
 #' @return \item{x0}{the IV-free exposure.}
