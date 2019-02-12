@@ -45,6 +45,7 @@ iv_free <- function(y, x, g, covar, q, family="gaussian"){
   if(family=="binomial"){
     if(!is.null(covar)){
       model <- lm(x[y==0]~g[y==0]+covar[y==0,])
+      print(model$coef)
       x0 <- x - (model$coef[1] + model$coef[2]*g + rowSums(hamardman.prod(model$coef[3:length(model$coef)],covar)))
     }else{
       model <- lm(x[y==0]~g[y==0])
