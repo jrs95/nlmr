@@ -475,7 +475,7 @@ fracpoly_figure <- function(beta, cov, x.min, x.max, family="gaussian", d=1, p_M
   if(ci_type=="quantile"){
     xmin <- min(x)
     xmax <- max(x)
-    prob <- (100/ci_quantile)/100
+    prob <- 1/ci_quantile
     x_ci <- quantile(x, probs=seq(0,1,prob))
     x_quantiles_ci <- cut(x, x_ci, include.lowest=T)
     x_quantiles_ci <- as.numeric(x_quantiles_ci)
