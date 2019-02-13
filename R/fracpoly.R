@@ -363,6 +363,7 @@ fracpoly_boot <- function(y, x, g, covar, q, x0q, xcoef, family="gaussian", xpos
     if(d==1){
       if(p_ML==-1){x1_boot<-xmean_boot^p_ML}else{x1_boot <- (p_ML+1)*xmean_boot^p_ML}
       mod <- rma.uni(coef_boot ~ -1 + x1_boot, vi=(coef_se_boot)^2, method=method)
+      if(length(mod$b)!=1) stop("incorrect number of parameters for best fitting fractional polynomial of degree 1 in bootstrap sample")
       frac_coef_boot[i,1] <- mod$b[1]
     }else{
       if(p1_ML==-1){x1_boot<-xmean_boot^p1_ML}else{x1_boot <- (p1_ML+1)*xmean_boot^p1_ML}
@@ -373,6 +374,7 @@ fracpoly_boot <- function(y, x, g, covar, q, x0q, xcoef, family="gaussian", xpos
         if(p2_ML==-1){x2_boot <- xmean_boot^p2_ML}else{x2_boot <- (p2_ML+1)*xmean_boot^p2_ML}
       }
       mod <- rma.uni(coef_boot ~ -1 + x1_boot + x2_boot, vi=(coef_se_boot)^2, method=method)
+      if(length(mod$b)!=2) stop("incorrect number of parameters for best fitting fractional polynomial of degree 2 in bootstrap sample")
       frac_coef_boot[i,1] <- mod$b[1]
       frac_coef_boot[i,2] <- mod$b[2]
     }
