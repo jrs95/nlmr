@@ -189,7 +189,7 @@ piecewise_figure <- function(y, x, g, covar=NULL, q=10, xcoef, coef, x0q, family
   # Piecewise function
   m <- NULL
   l <- q + 1
-  prob <- (100/q)/100
+  prob <- 1/q
   quantiles_x <- quantile(x, probs= seq(0,1, prob))
   x_quantiles <- cut(x, quantiles_x, include.lowest=T)
   x_quantiles <- as.numeric(x_quantiles)
@@ -207,7 +207,7 @@ piecewise_figure <- function(y, x, g, covar=NULL, q=10, xcoef, coef, x0q, family
   }
   y_mm_ref <- y_mm - y_ref
 
-  prob <- (100/ci_quantiles)/100
+  prob <- 1/ci_quantiles
   ci_quant <- as.numeric(quantile(x, probs=seq(0,1,prob)))
   x_quantiles_ci <- cut(x, ci_quant, include.lowest=T)
   x_quantiles_ci <- as.numeric(x_quantiles_ci)
