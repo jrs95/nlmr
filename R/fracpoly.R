@@ -308,8 +308,8 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
   if(d=="both"){
     if(fp_d12_p>pd){d <- 1}else{d <- 2}
   }
-  if(d==1){model <- fp1}
-  if(d==2){model <- fp2}
+  if(d==1){model <- fp1; if(length(model$b)!=1) stop("incorrect number of parameters for best fitting fractional polynomial of degree 1")}
+  if(d==2){model <- fp2; if(length(model$b)!=2) stop("incorrect number of parameters for best fitting fractional polynomial of degree 2")}
   
   # Results 
   results <- list(model=model, p_ML=p_ML, p1_ML=p1_ML, p2_ML=p2_ML, fp_p=fp_p, fp_d12_p=fp_d12_p, d=d)
