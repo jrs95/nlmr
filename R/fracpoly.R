@@ -271,8 +271,8 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
   fp_p <- 1 - pchisq(((-2*likelihood_d1[6]) - (-2*maxlik_d1)), df=1)
 
   # FP degree 2
-  powers1 <- c(-3, -2, -1.5, -1, -0.5, 0, 1, 2)
-  powers2 <- c(-3, -2, -1.5, -1, -0.5, 0, 1, 2)
+  powers1 <- c(0, -3, -2, -1.5, -1, -0.5, 1, 2)
+  powers2 <- c(0, -3, -2, -1.5, -1, -0.5, 1, 2)
   likelihood_d2 <- NULL
   # powers_d2 <- data.frame(p1=NULL, p2=NULL)
   
@@ -289,7 +289,7 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
         # powers_d2 <- rbind(powers_d2, data.frame(p1=p11, p2=p21))
         likelihood_d2 <- c(likelihood_d2, NA)
       }else{
-        if(p11==-3 & p21==-3){
+        if(p11==0 & p21==0){
           fp2 <- fp_mod
           p1_ML <- p11; p2_ML <- p21
         }
