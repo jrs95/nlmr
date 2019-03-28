@@ -151,7 +151,7 @@ fracpoly_mr <- function(y, x, g, covar=NULL, family="gaussian", q=10, xpos="mean
   model <- as.matrix(data.frame(q=q, xpos=xpos, ci_type=ci, nboot=nboot))
   coefficients <- as.matrix(data.frame(beta=beta, se=se, lci=lci, uci=uci, pval=pval))
   rownames(coefficients) <- powers
-  if(nrow(coefficients)==2){if(powers[1]==powers[2]){rownames(coefficients) <- c(powers[1], paste0("log", powers[2]))}}
+  if(nrow(coefficients)==2){if(powers[1]==powers[2]){rownames(coefficients) <- c(powers[1], paste0("log ", powers[2]))}}
   loc <- as.matrix(data.frame(beta=(coef), se=(abs(coef_se)), lci=(coef - 1.96*(abs(coef_se))), uci=(coef + 1.96*(abs(coef_se))), pval=(2*pnorm(-abs(coef/coef_se)))))
   rownames(loc) <- 1:nrow(loc)
   xcoef_quant <- as.matrix(data.frame(beta=xcoef_sub, se=xcoef_sub_se))
