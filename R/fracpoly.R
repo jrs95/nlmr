@@ -137,6 +137,9 @@ fracpoly_mr <- function(y, x, g, covar=NULL, family="gaussian", q=10, xpos="mean
   lci <- as.numeric(lci); uci <- as.numeric(uci)
   if(ci=="model_se"){nboot<-NA}
   
+  print(p1_ML)
+  print(p2_ML)
+  
   ##### Figure #####
   if(fig==T){
     if(d==1){
