@@ -253,13 +253,13 @@ print.summary.fracpoly_mr <- function(x, ...){
 fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
   
   # FP degree 1
-  powers<-c(-3, -2, -1.5, -1, -0.5, 0, 1, 2)
+  powers<-c(0, -3, -2, -1.5, -1, -0.5, 1, 2)
   likelihood_d1 <- NULL
   
   for(p1 in powers){
     if(p1==-1){x1 <- xmean^p1}else{x1 <- (p1+1)*xmean^p1}
     fp_mod <- rma(coef ~ -1 + x1, vi=(coef_se)^2, method=method)
-    if(p1==-3){fp1 <- fp_mod; p_ML <- p1}
+    if(p1==0){fp1 <- fp_mod; p_ML <- p1}
     else{
       if(fp_mod$fit.stats[1,1]>=max(likelihood_d1)){fp1 <- fp_mod; p_ML <- p1}
     }
