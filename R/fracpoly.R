@@ -469,9 +469,41 @@ fracpoly_figure <- function(beta, cov, x.min, x.max, family="gaussian", d=1, p_M
         }
       }
       if(p1_ML!=-1 & p2_ML==-1 & p1_ML!=p2_ML){
-        plot.data$yest <- beta[1]*plot.data$x^(p1_ML+1) + beta[2]*log(plot.data$x) - (beta[1]*ref^(p1_ML+1) + beta[2]*log(ref)); if(ci!="bootstrap_per"){plot.data$yse <- sqrt((plot.data$x^(p1_ML+1)-ref^(p1_ML+1))^2*cov[1,1] + 2*(plot.data$x^(p1_ML+1)-ref^(p1_ML+1))*(log(plot.data)-log(ref))*cov[1,2] + (log(plot.data$x)-log(ref))^2*cov[2,2]); plot.data$lci <- plot.data$yest - 1.96*plot.data$yse; plot.data$uci <- plot.data$yest + 1.96*plot.data$yse}else{boot <- plot.data$x^(p1_ML+1)%*%t(frac_coef_boot[,1]) + log(plot.data$x)%*%t(frac_coef_boot[,2]) - reprow(ref^(p1_ML+1)%*%t(frac_coef_boot[,1]) + log(ref)%*%t(frac_coef_boot[,2]), n=nrow(plot.data)); plot.data$lci <- rowQuantiles(boot, probs=0.025); plot.data$uci <- rowQuantiles(boot, probs=0.975)}}
-      if(p1_ML!=-1 & p2_ML!=-1 & p1_ML==p2_ML){plot.data$yest <- beta[1]*plot.data$x^(p1_ML+1) + beta[2]*plot.data$x^(p2_ML+1)*log(plot.data$x) - (beta[1]*ref^(p1_ML+1) + beta[2]*ref^(p2_ML+1)*log(ref)); if(ci!="bootstrap_per"){plot.data$yse <- sqrt((plot.data$x^(p1_ML+1)-ref^(p1_ML+1))^2*cov[1,1] + 2*(plot.data$x^(p1_ML+1)-ref^(p1_ML+1))*(plot.data$x^(p2_ML+1)*log(plot.data$x)-ref^(p2_ML+1)*log(ref))*cov[1,2] + (plot.data$x^(p2_ML+1)*log(plot.data$x)-ref^(p2_ML+1)*log(ref))^2*cov[2,2]); plot.data$lci <- plot.data$yest - 1.96*plot.data$yse; plot.data$uci <- plot.data$yest + 1.96*plot.data$yse}else{boot <- plot.data$x^(p1_ML+1)%*%t(frac_coef_boot[,1]) + (plot.data$x^(p2_ML+1)*log(plot.data$x))%*%t(frac_coef_boot[,2]) - reprow(ref^(p1_ML+1)%*%t(frac_coef_boot[,1]) + (ref^(p2_ML+1)*log(ref))%*%t(frac_coef_boot[,2]), n=nrow(plot.data)); plot.data$lci <- rowQuantiles(boot, probs=0.025); plot.data$uci <- rowQuantiles(boot, probs=0.975)}}
-      if(p1_ML!=-1 & p2_ML!=-1 & p1_ML!=p2_ML){plot.data$yest <- beta[1]*plot.data$x^(p1_ML+1) + beta[2]*plot.data$x^(p2_ML+1) - (beta[1]*ref^(p1_ML+1) + beta[2]*ref^(p2_ML+1)); if(ci!="bootstrap_per"){plot.data$yse <- sqrt((plot.data$x^(p1_ML+1)-ref^(p1_ML+1))^2*cov[1,1] + 2*(plot.data$x^(p1_ML+1)-ref^(p1_ML+1))*(plot.data$x^(p2_ML+1)-ref^(p2_ML+1))*cov[1,2] + (plot.data$x^(p2_ML+1)-ref^(p2_ML+1))^2*cov[2,2]); plot.data$lci <- plot.data$yest - 1.96*plot.data$yse; plot.data$uci <- plot.data$yest + 1.96*plot.data$yse}else{boot <- plot.data$x^(p1_ML+1)%*%t(frac_coef_boot[,1]) + plot.data$x^(p2_ML+1)%*%t(frac_coef_boot[,2]) - reprow(ref^(p1_ML+1)%*%t(frac_coef_boot[,1]) + ref^(p2_ML+1)%*%t(frac_coef_boot[,2]), n=nrow(plot.data)); plot.data$lci <- rowQuantiles(boot, probs=0.025); plot.data$uci <- rowQuantiles(boot, probs=0.975)}}
+        plot.data$yest <- beta[1]*plot.data$x^(p1_ML+1) + beta[2]*log(plot.data$x) - (beta[1]*ref^(p1_ML+1) + beta[2]*log(ref))
+        if(ci!="bootstrap_per"){
+          plot.data$yse <- sqrt((plot.data$x^(p1_ML+1)-ref^(p1_ML+1))^2*cov[1,1] + 2*(plot.data$x^(p1_ML+1)-ref^(p1_ML+1))*(log(plot.data)-log(ref))*cov[1,2] + (log(plot.data$x)-log(ref))^2*cov[2,2])
+          plot.data$lci <- plot.data$yest - 1.96*plot.data$yse
+          plot.data$uci <- plot.data$yest + 1.96*plot.data$yse
+        }else{
+          boot <- plot.data$x^(p1_ML+1)%*%t(frac_coef_boot[,1]) + log(plot.data$x)%*%t(frac_coef_boot[,2]) - reprow(ref^(p1_ML+1)%*%t(frac_coef_boot[,1]) + log(ref)%*%t(frac_coef_boot[,2]), n=nrow(plot.data))
+          plot.data$lci <- rowQuantiles(boot, probs=0.025)
+          plot.data$uci <- rowQuantiles(boot, probs=0.975)
+        }
+      }
+      if(p1_ML!=-1 & p2_ML!=-1 & p1_ML==p2_ML){
+        plot.data$yest <- beta[1]*plot.data$x^(p1_ML+1) + beta[2]*plot.data$x^(p2_ML+1)*log(plot.data$x) - (beta[1]*ref^(p1_ML+1) + beta[2]*ref^(p2_ML+1)*log(ref))
+        if(ci!="bootstrap_per"){
+          plot.data$yse <- sqrt((plot.data$x^(p1_ML+1)-ref^(p1_ML+1))^2*cov[1,1] + 2*(plot.data$x^(p1_ML+1)-ref^(p1_ML+1))*(plot.data$x^(p2_ML+1)*log(plot.data$x)-ref^(p2_ML+1)*log(ref))*cov[1,2] + (plot.data$x^(p2_ML+1)*log(plot.data$x)-ref^(p2_ML+1)*log(ref))^2*cov[2,2])
+          plot.data$lci <- plot.data$yest - 1.96*plot.data$yse
+          plot.data$uci <- plot.data$yest + 1.96*plot.data$yse
+        }else{
+          boot <- plot.data$x^(p1_ML+1)%*%t(frac_coef_boot[,1]) + (plot.data$x^(p2_ML+1)*log(plot.data$x))%*%t(frac_coef_boot[,2]) - reprow(ref^(p1_ML+1)%*%t(frac_coef_boot[,1]) + (ref^(p2_ML+1)*log(ref))%*%t(frac_coef_boot[,2]), n=nrow(plot.data))
+          plot.data$lci <- rowQuantiles(boot, probs=0.025)
+          plot.data$uci <- rowQuantiles(boot, probs=0.975)
+        }
+      }
+      if(p1_ML!=-1 & p2_ML!=-1 & p1_ML!=p2_ML){
+        plot.data$yest <- beta[1]*plot.data$x^(p1_ML+1) + beta[2]*plot.data$x^(p2_ML+1) - (beta[1]*ref^(p1_ML+1) + beta[2]*ref^(p2_ML+1))
+        if(ci!="bootstrap_per"){
+          plot.data$yse <- sqrt((plot.data$x^(p1_ML+1)-ref^(p1_ML+1))^2*cov[1,1] + 2*(plot.data$x^(p1_ML+1)-ref^(p1_ML+1))*(plot.data$x^(p2_ML+1)-ref^(p2_ML+1))*cov[1,2] + (plot.data$x^(p2_ML+1)-ref^(p2_ML+1))^2*cov[2,2])
+          plot.data$lci <- plot.data$yest - 1.96*plot.data$yse
+          plot.data$uci <- plot.data$yest + 1.96*plot.data$yse
+        }else{
+          boot <- plot.data$x^(p1_ML+1)%*%t(frac_coef_boot[,1]) + plot.data$x^(p2_ML+1)%*%t(frac_coef_boot[,2]) - reprow(ref^(p1_ML+1)%*%t(frac_coef_boot[,1]) + ref^(p2_ML+1)%*%t(frac_coef_boot[,2]), n=nrow(plot.data))
+          plot.data$lci <- rowQuantiles(boot, probs=0.025)
+          plot.data$uci <- rowQuantiles(boot, probs=0.975)
+        }
+      }
     }
     if(family!="binomial"){figure <- ggplot(plot.data, aes(x=x)); figure <- figure + geom_hline(aes(yintercept=0), colour="grey") + geom_line(aes(y=yest), color="black") + geom_line(aes(y=lci), color="grey") + geom_line(aes(y=uci), color="grey") + theme_bw() + labs(x=pref_x,y=bquote(.(pref_y)~" ["~.(pref_x_ref)["ref"]~"="~.(round(ref,2))~"]")) + theme(axis.title.x = element_text(vjust=0.5, size=20), axis.title.y = element_text(vjust=0.5, size=20), axis.text.x=element_text(size=18), axis.text.y=element_text(size=18)) + geom_point(aes(x=x, y=y), data=plot.data.ref, colour="red", size=4)+ theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()); if(!is.null(breaks)){suppressMessages(figure <- figure + scale_y_continuous(breaks=breaks))}}
     if(family=="binomial"){pref_y <- paste0("Odds ratio of ", pref_y); plot.data$yest <- exp(plot.data$yest); plot.data$uci <- exp(plot.data$uci); plot.data$lci <- exp(plot.data$lci); plot.data.ref$y <- exp(0); figure <- ggplot(plot.data, aes(x=x)); figure <- figure + geom_hline(aes(yintercept=1), colour="grey") + geom_line(aes(y=yest), color="black") + geom_line(aes(y=lci), color="grey") + geom_line(aes(y=uci), color="grey") + theme_bw() + labs(x=pref_x,y=bquote(.(pref_y)~" ["~.(pref_x_ref)["ref"]~"="~.(round(ref,2))~"]")) + theme(axis.title.x = element_text(vjust=0.5, size=20), axis.title.y = element_text(vjust=0.5, size=20), axis.text.x=element_text(size=18), axis.text.y=element_text(size=18)) + geom_point(aes(x=x, y=y), data=plot.data.ref, colour="red", size=4) + theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()); if(!is.null(breaks)){figure <- figure + scale_y_continuous(breaks=breaks)}; ybreaks <- ggplot_build(figure)$layout$panel_params[[1]]$y.major_source; figure <- figure + scale_y_continuous(trans="log", breaks=ybreaks)}
