@@ -137,9 +137,6 @@ fracpoly_mr <- function(y, x, g, covar=NULL, family="gaussian", q=10, xpos="mean
   lci <- as.numeric(lci); uci <- as.numeric(uci)
   if(ci=="model_se"){nboot<-NA}
   
-  print(p1_ML)
-  print(p2_ML)
-  
   ##### Figure #####
   if(fig==T){
     if(d==1){
@@ -288,6 +285,7 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
       }
       fp_mod <- try(rma(coef ~ -1 + x1 + x2, vi=(coef_se)^2, method=method), silent=TRUE)
       if(is(fp_mod, "try-error")==T){
+        powers_d2 <- rbind(powers_d2, data.frame(p1=p11, p2=p21))
         likelihood_d2 <- c(likelihood_d2, NA)
       }else{
         if(p11==-3 & p21==-3){
@@ -296,6 +294,7 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
         else{
           if(fp_mod$fit.stats[1,1]>=max(likelihood_d2, na.rm=T)){fp2 <- fp_mod}
         }
+        powers_d2 <- rbind(powers_d2, data.frame(p1=p11, p2=p21))
         likelihood_d2 <- c(likelihood_d2, fp_mod$fit.stats[1,1])
       }
     }
@@ -303,7 +302,6 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
   }
 
   maxlik_d2 <- max(likelihood_d2, na.rm=T)
-  print(powers_d2)
   p1_ML <- powers_d2[which.max(rank(likelihood_d2, ties.method = "first", na.last=FALSE)),1]
   p2_ML <- powers_d2[which.max(rank(likelihood_d2, ties.method = "first", na.last=FALSE)),2]
   fp_d12_p <- 1 - pchisq(((-2*maxlik_d1) - (-2*maxlik_d2)),df=2)
