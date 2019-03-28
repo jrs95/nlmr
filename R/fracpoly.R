@@ -101,7 +101,7 @@ fracpoly_mr <- function(y, x, g, covar=NULL, family="gaussian", q=10, xpos="mean
   }else{frac_coef_boot <- NULL}
   
   ##### Results #####
-  if(d==1){powers <- p_ML + 1}else{powers <- c(p1_ML + 1, p2_ML + 1)}
+  if(d==1){powers <- p_ML + 1}else{powers <- c((p1_ML + 1), (p2_ML + 1))}
   beta <- as.numeric(model$b)
   if(ci=="model_se"){
     cov <- model$vb
