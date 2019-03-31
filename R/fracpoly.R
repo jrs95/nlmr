@@ -259,23 +259,26 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
   
   for(p1 in powers){
     if(p1==-1){x1 <- xmean^p1}else{x1 <- (p1+1)*xmean^p1}
-    fp_mod <- rma(coef ~ -1 + x1, vi=(coef_se)^2, method=method)
-    if(p1==0){fp1 <- fp_mod; p_ML <- p1}
-    else{
-      if(fp_mod$fit.stats[1,1]>=max(likelihood_d1)){fp1 <- fp_mod; p_ML <- p1}
+    fp_mod <- try(rma(coef ~ -1 + x1, vi=(coef_se)^2, method=method), silent=TRUE)
+    if(is(fp_mod, "try-error")==T){
+      likelihood_d1 <- c(likelihood_d1, NA)
     }
-    likelihood_d1 <- c(likelihood_d1, fp_mod$fit.stats[1,1])
+    else{
+      if(p1==0){fp1 <- fp_mod; p_ML <- p1}
+      else{
+        if(fp_mod$fit.stats[1,1]>=suppressWarnings(max(likelihood_d1, na.rm=T))){fp1 <- fp_mod; p_ML <- p1}
+      }
+      likelihood_d1 <- c(likelihood_d1, fp_mod$fit.stats[1,1])
+    }
   }
   
-  maxlik_d1 <- max(likelihood_d1)
-  # p_ML <- powers[which.max(rank(likelihood_d1, ties.method = "first", na.last=FALSE))]
-  fp_p <- 1 - pchisq(((-2*likelihood_d1[6]) - (-2*maxlik_d1)), df=1)
+  maxlik_d1 <- max(likelihood_d1, na.rm=T)
+  fp_p <- 1 - pchisq(((-2*likelihood_d1[1]) - (-2*maxlik_d1)), df=1)
 
   # FP degree 2
   powers1 <- c(0, -3, -2, -1.5, -1, -0.5, 1, 2)
   powers2 <- c(0, -3, -2, -1.5, -1, -0.5, 1, 2)
   likelihood_d2 <- NULL
-  # powers_d2 <- data.frame(p1=NULL, p2=NULL)
   
   for(p11 in powers1){
     if(p11==-1){x1 <- xmean^p11}else{x1 <- (p11+1)*xmean^p11}
@@ -287,7 +290,6 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
       }
       fp_mod <- try(rma(coef ~ -1 + x1 + x2, vi=(coef_se)^2, method=method), silent=TRUE)
       if(is(fp_mod, "try-error")==T){
-        # powers_d2 <- rbind(powers_d2, data.frame(p1=p11, p2=p21))
         likelihood_d2 <- c(likelihood_d2, NA)
       }else{
         if(p11==0 & p21==0){
@@ -295,9 +297,8 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
           p1_ML <- p11; p2_ML <- p21
         }
         else{
-          if(fp_mod$fit.stats[1,1]>=max(likelihood_d2, na.rm=T)){fp2 <- fp_mod; p1_ML <- p11; p2_ML <- p21}
+          if(fp_mod$fit.stats[1,1]>=suppressWarnings(max(likelihood_d2, na.rm=T))){fp2 <- fp_mod; p1_ML <- p11; p2_ML <- p21}
         }
-        # powers_d2 <- rbind(powers_d2, data.frame(p1=p11, p2=p21))
         likelihood_d2 <- c(likelihood_d2, fp_mod$fit.stats[1,1])
       }
     }
@@ -305,8 +306,6 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
   }
 
   maxlik_d2 <- max(likelihood_d2, na.rm=T)
-  # p1_ML <- powers_d2[which.max(rank(likelihood_d2, ties.method = "first", na.last=FALSE)),1]
-  # p2_ML <- powers_d2[which.max(rank(likelihood_d2, ties.method = "first", na.last=FALSE)),2]
   fp_d12_p <- 1 - pchisq(((-2*maxlik_d1) - (-2*maxlik_d2)),df=2)
   
   # Model
