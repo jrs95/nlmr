@@ -57,6 +57,7 @@ fracpoly_mr <- function(y, x, g, covar=NULL, family="gaussian", q=10, xpos="mean
   
   ##### Error messages #####
   if(!(is.vector(y) & is.vector(x) & is.vector(g))) stop('either the outcome, exposure or instrument is not a vector')
+  if(!is.null(covar)){if(!is.data.frame(covar)) stop('covar has to be a data.frame')}
   if(!((is.numeric(y) | is.integer(y)) & (is.numeric(x) | is.integer(x)) & (is.numeric(g) | is.integer(g)))) stop('either the outcome, exposure or instrument is not numeric')
   if(any(x<=1)) stop('fractional polynomial models require the exposure to be >>1')
   if(length(y)<=1) stop('the outcome is less than or equal to a single value')
