@@ -51,6 +51,7 @@ piecewise_mr <- function(y, x, g, covar=NULL, family="gaussian", q=10, xpos="mea
   
   ##### Error messages #####
   if(!(is.vector(y) & is.vector(x) & is.vector(g))) stop('either the outcome, exposure or instrument is not a vector')
+  if(!is.null(covar)){if(!is.data.frame(covar)) stop('covar has to be a data.frame')}
   if(!((is.numeric(y) | is.integer(y)) & (is.numeric(x) | is.integer(x)) & (is.numeric(g) | is.integer(g)))) stop('either the outcome, exposure or instrument is not numeric')
   if(length(y)<=1) stop('the outcome is less than or equal to a single value')
   if(!(length(y)==length(x) & length(y)==length(g)) | (if(!is.null(covar)){(nrow(covar)!=length(y))}else{FALSE})) stop('the number of observations for the outcome, exposure, instrument and covariates are not all the same')
