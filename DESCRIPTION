@@ -4,18 +4,11 @@ Version: 2.0
 Date: 02-08-2018
 Author: James Staley
 Maintainer: James Staley <james.staley@bristol.ac.uk>
-Description: This package is used to assess non-linear exposure-outcome
-    relationships using instrumental variable analysis in the context of Mendelian
-    randomisation.
-Depends:
-    R (>= 3.2.0),
-    methods
+Description: This package is used to assess non-linear exposure-outcome relationships using instrumental variable analysis in the context of Mendelian randomisation.
+Depends: R (>= 3.2.0), methods
 License: GPL (>= 2)
 ByteCompile: TRUE
 LazyData: TRUE
 Encoding: UTF-8
-Imports:
-    ggplot2,
-    matrixStats,
-    metafor
+Imports: ggplot2, matrixStats, metafor
 RoxygenNote: 6.0.1.9000
