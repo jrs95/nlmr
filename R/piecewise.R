@@ -61,8 +61,10 @@ piecewise_mr <- function(y, x, g, covar=NULL, family="gaussian", q=10, xpos="mea
   if((length(y)/10)<q) stop('the quantiles should contain at least 10 observations')
   
   ##### Covariates #####
-  if(!is.null(covar)){covar <- as.matrix(model.matrix(as.formula(paste("~ ", paste(names(covar),collapse=" + "))), data=covar)[,-1])}
-  if(any(is.na(covar))) stop('there are missing values in the covariates')
+  if(!is.null(covar)){
+    covar <- as.matrix(model.matrix(as.formula(paste("~ ", paste(names(covar),collapse=" + "))), data=covar)[,-1])
+    if(any(is.na(covar))) stop('there are missing values in the covariates')
+  }
   
   ##### x0 (IV-Free) #####
   ivf <- iv_free(y=y, x=x, g=g, covar=covar, q=q, family=family)
