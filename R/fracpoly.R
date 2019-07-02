@@ -71,8 +71,10 @@ fracpoly_mr <- function(y, x, g, covar=NULL, family="gaussian", q=10, xpos="mean
   if(!(ci=="model_se" | ci=="bootstrap_se" | ci=="bootstrap_per")) stop('the confidence intervals must be one of "model_se", "bootstrap_se" and "bootstrap_per"')
   
   ##### Covariates #####
-  if(!is.null(covar)){covar <- as.matrix(model.matrix(as.formula(paste("~ ", paste(names(covar),collapse=" + "))), data=covar)[,-1])}
-  if(any(is.na(covar))) stop('there are missing values in the covariates')
+  if(!is.null(covar)){
+    covar <- as.matrix(model.matrix(as.formula(paste("~ ", paste(names(covar),collapse=" + "))), data=covar)[,-1])
+    if(any(is.na(covar))) stop('there are missing values in the covariates')
+  }
 
   ##### x0 (IV-Free) #####
   ivf <- iv_free(y=y, x=x, g=g, covar=covar, q=q, family=family)
