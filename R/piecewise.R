@@ -62,7 +62,7 @@ piecewise_mr <- function(y, x, g, covar=NULL, family="gaussian", q=10, xpos="mea
   
   ##### Covariates #####
   if(!is.null(covar)){
-    covar <- as.matrix(model.matrix(as.formula(paste("~ ", paste(names(covar),collapse=" + "))), data=covar)[,-1])
+    covar <- model.matrix(as.formula(~ .), data=covar)[,-1,drop=F]
     if(any(is.na(covar))) stop('there are missing values in the covariates')
   }
   
