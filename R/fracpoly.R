@@ -357,7 +357,7 @@ fracpoly_boot <- function(y, x, g, covar, q, x0q, xcoef, family="gaussian", xpos
     y_boot <- y[indices]
     x_boot <- x[indices]
     g_boot <- g[indices]
-    if(!is.null(covar)){covar_boot <- as.matrix(covar[indices,])}else{covar_boot <- NULL}
+    if(!is.null(covar)){covar_boot <- as.matrix(covar[indices,,drop=F])}else{covar_boot <- NULL}
     x0qb <- x0q[indices]
     
     # LACE
