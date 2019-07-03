@@ -233,12 +233,12 @@ piecewise_figure <- function(y, x, g, covar=NULL, q=10, xcoef, coef, x0q, family
     y_boot <- y[indices]
     x_boot <- x[indices]
     g_boot <- g[indices]
-    if(!is.null(covar)){covar_boot <- as.matrix(covar[indices,])}else{covar_boot <- NULL}
+    if(!is.null(covar)){covar_boot <- as.matrix(covar[indices,,drop=F])}else{covar_boot <- NULL}
     x0qb <- x0q[indices]
     for(j in 1:q){
       if(!is.null(covar_boot)){
-        if(family=="gaussian"){non_p_boot[i,j] <- (lm(y_boot[x0qb==j]~g_boot[x0qb==j]+covar_boot[x0qb==j,])$coef[2])/xcoef}
-        if(family=="binomial"){non_p_boot[i,j] <- (glm(y_boot[x0qb==j]~g_boot[x0qb==j]+covar_boot[x0qb==j,], family="binomial")$coef[2])/xcoef}
+        if(family=="gaussian"){non_p_boot[i,j] <- (lm(y_boot[x0qb==j]~g_boot[x0qb==j]+covar_boot[x0qb==j,,drop=F])$coef[2])/xcoef}
+        if(family=="binomial"){non_p_boot[i,j] <- (glm(y_boot[x0qb==j]~g_boot[x0qb==j]+covar_boot[x0qb==j,,drop=F], family="binomial")$coef[2])/xcoef}
       }else{
         if(family=="gaussian"){non_p_boot[i,j] <- (lm(y_boot[x0qb==j]~g_boot[x0qb==j])$coef[2])/xcoef}
         if(family=="binomial"){non_p_boot[i,j] <- (glm(y_boot[x0qb==j]~g_boot[x0qb==j], family="binomial")$coef[2])/xcoef}
