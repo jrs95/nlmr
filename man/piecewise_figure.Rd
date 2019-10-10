@@ -48,5 +48,5 @@ the plot of the piecewise linear function.
 piecewise_figure plots the piecewise linear function.
 }
 \author{
-James R Staley <js16174@bristol.ac.uk>
+James R Staley <jrstaley95@gmail.com>
 }
