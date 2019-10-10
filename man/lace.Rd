@@ -43,5 +43,5 @@ List of results for the localised average causal effects for quantile.
 lace computes the localised average causal effect for quantile.
 }
 \author{
-James R Staley <js16174@bristol.ac.uk>
+James R Staley <jrstaley95@gmail.com>
 }
