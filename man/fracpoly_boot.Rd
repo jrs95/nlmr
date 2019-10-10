@@ -45,5 +45,5 @@ fracpoly_boot(y, x, g, covar, q, x0q, xcoef, family = "gaussian", xpos,
 fracpoly_boot computes the best-fitting fractional polynomial of degrees 1 and 2.
 }
 \author{
-James R Staley <js16174@bristol.ac.uk>
+James R Staley <jrstaley95@gmail.com>
 }
