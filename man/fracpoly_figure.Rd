@@ -53,5 +53,5 @@ the plot of the best-fitting fractional polynomial.
 fracpoly_figure plots the best-fitting fractional polynomial.
 }
 \author{
-James R Staley <js16174@bristol.ac.uk>
+James R Staley <jrstaley95@gmail.com>
 }
