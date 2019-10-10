@@ -15,5 +15,5 @@ hamardman.prod(coef, covar)
 hamardman.prod computes the Hamardman product of a vector of regression coefficients and a matrix of covariates.
 }
 \author{
-James R Staley <js16174@bristol.ac.uk>
+James R Staley <jrstaley95@gmail.com>
 }
