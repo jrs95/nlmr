@@ -95,5 +95,5 @@ plm = piecewise_mr(y, x, g, c, family="gaussian", q=10, nboot=100, fig=T)
 summary(plm)
 }
 \author{
-James R Staley <js16174@bristol.ac.uk>
+James R Staley <jrstaley95@gmail.com>
 }
