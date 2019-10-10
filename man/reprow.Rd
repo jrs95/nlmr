@@ -15,5 +15,5 @@ reprow(x, n)
 This function creates a matrix of a repeated vector where each row is the same.
 }
 \author{
-James R Staley <js16174@bristol.ac.uk>
+James R Staley <jrstaley95@gmail.com>
 }
