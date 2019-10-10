@@ -40,5 +40,5 @@ List of non-linear MR results from the fractional polynomial MR approach.
 fracpoly_best computes the best-fitting fractional polynomial of degrees 1 and 2.
 }
 \author{
-James R Staley <js16174@bristol.ac.uk>
+James R Staley <jrstaley95@gmail.com>
 }
