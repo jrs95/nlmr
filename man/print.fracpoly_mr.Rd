@@ -13,5 +13,5 @@
 print method for class "fracpoly_mr".
 }
 \author{
-James R Staley <js16174@bristol.ac.uk>
+James R Staley <jrstaley95@gmail.com>
 }
