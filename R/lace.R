@@ -30,7 +30,7 @@ hamardman.prod <- function(coef, covar){
 #' @param g the instrumental variable.
 #' @param q the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).
 #' @param covar a matrix of covariates.
-#' @param family a description of the error distribution and link function to be used in the model (either gaussian or binomial can be specified).
+#' @param family a description of the error distribution and link function to be used in the model (either "gaussian" or "binomial" can be specified).
 #' @return \item{xcoef}{the association between the exposure and the instrument.} 
 #' @return \item{x0}{the IV-free exposure.}
 #' @return \item{x0q}{the quantiles of x0.} 
