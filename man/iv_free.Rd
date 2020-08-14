@@ -17,7 +17,7 @@ iv_free(y, x, g, covar, q, family = "gaussian")
 
 \item{q}{the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).}
 
-\item{family}{a description of the error distribution and link function to be used in the model (either gaussian or binomial can be specified).}
+\item{family}{a description of the error distribution and link function to be used in the model (either "gaussian" or "binomial" can be specified).}
 }
 \value{
 \item{xcoef}{the association between the exposure and the instrument.}
