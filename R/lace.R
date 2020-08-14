@@ -71,7 +71,7 @@ iv_free <- function(y, x, g, covar, q, family="gaussian"){
 #' @param q the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).
 #' @param x0q quantiles of x0 (the IV-free exposure).
 #' @param xc_sub compute the association between the exposure and the insturment in each quantile of x0.
-#' @param family a description of the error distribution and link function to be used in the model (either gaussian or binomial can be specified).
+#' @param family a description of the error distribution and link function to be used in the model (either "gaussian" or "binomial" can be specified).
 #' @param xpos the position used to relate x to the localised average causal effect. The default is the mean of the x-values within each quantile, otherwise specify a percentile (e.g. 0.5 corresponds to the median value).
 #' @return List of results for the localised average causal effects for quantile.
 #' @return \item{coef}{the localised average causal effect in each quantile.} 
