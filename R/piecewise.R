@@ -6,7 +6,7 @@
 #' @param x vector of exposure values.
 #' @param g the instrumental variable.
 #' @param covar data.frame of covariates.
-#' @param family a description of the error distribution and link function to be used in the model. For frac_poly_mr this can be a character string naming either the gaussian (i.e. for continuous data) or binomial (i.e. for binary data) family function.
+#' @param family a description of the error distribution and link function to be used in the model. For piecewise_mr this can be a character string naming either the gaussian (i.e. "gaussian" for continuous data) or binomial (i.e. "binomial" for binary data) family function.
 #' @param q the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).
 #' @param nboot the number of bootstrap replications (if required). The default is 100 replications.
 #' @param fig a logical statement as to whether the user wants the results displayed in a figure. The default is false.
