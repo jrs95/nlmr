@@ -333,7 +333,7 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
 #' @param q the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).
 #' @param x0q quantiles of x0 (the IV-free exposure).
 #' @param xcoef the association between the exposure and the instrument.
-#' @param family a description of the error distribution and link function to be used in the model. For fracpoly_mr this can be a character string naming either the gaussian (i.e. for continuous data) or binomial (i.e. for binary data) family function.
+#' @param family a description of the error distribution and link function to be used in the model. For fracpoly_mr this can be a character string naming either the gaussian (i.e. "gaussian" for continuous data) or binomial (i.e. "binomial" for binary data) family function.
 #' @param xpos the position used to relate x to the localised average causal effect. The default is the mean of the x-values within each quantile, otherwise specify a percentile (e.g. 0.5 corresponds to the median value).
 #' @param method meta-regression method parsed to the rma package. The default is fixed-effects ("FE").
 #' @param nboot the number of bootstrap replications (if required). The default is 100 replications.
