@@ -18,7 +18,7 @@ fracpoly_figure(beta, cov, x.min, x.max, family = "gaussian", d = 1,
 
 \item{x.max}{the maximum value of the exposure.}
 
-\item{family}{a description of the error distribution and link function to be used in the model. For fracpoly_mr this can be a character string naming either the gaussian (i.e. for continuous data) or binomial (i.e. for binary data) family function.}
+\item{family}{a description of the error distribution and link function to be used in the model. For fracpoly_mr this can be a character string naming either the gaussian (i.e. "gaussian" for continuous data) or binomial (i.e. "binomial" for binary data) family function.}
 
 \item{d}{fractional polynomial degree. The default is degree 1. The other options are: 1, 2, or "both".}
 
