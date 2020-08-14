@@ -399,7 +399,7 @@ fracpoly_boot <- function(y, x, g, covar, q, x0q, xcoef, family="gaussian", xpos
 #' @param cov the covariance matrix of the best-fitting fractional polynomial.
 #' @param x.min the minimum value of the exposure.
 #' @param x.max the maximum value of the exposure.
-#' @param family a description of the error distribution and link function to be used in the model. For fracpoly_mr this can be a character string naming either the gaussian (i.e. for continuous data) or binomial (i.e. for binary data) family function.
+#' @param family a description of the error distribution and link function to be used in the model. For fracpoly_mr this can be a character string naming either the gaussian (i.e. "gaussian" for continuous data) or binomial (i.e. "binomial" for binary data) family function.
 #' @param d fractional polynomial degree. The default is degree 1. The other options are: 1, 2, or "both".
 #' @param p_ML the power of the best-fitting fractional polynomial of degree 1.
 #' @param p1_ML the first power of the best-fitting fractional polynomial of degree 2.
