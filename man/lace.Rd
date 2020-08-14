@@ -22,7 +22,7 @@ lace(y, x, g, covar = NULL, q, x0q, xc_sub = TRUE, family = "gaussian",
 
 \item{xc_sub}{compute the association between the exposure and the insturment in each quantile of x0.}
 
-\item{family}{a description of the error distribution and link function to be used in the model (either gaussian or binomial can be specified).}
+\item{family}{a description of the error distribution and link function to be used in the model (either "gaussian" or "binomial" can be specified).}
 
 \item{xpos}{the position used to relate x to the localised average causal effect. The default is the mean of the x-values within each quantile, otherwise specify a percentile (e.g. 0.5 corresponds to the median value).}
 }
