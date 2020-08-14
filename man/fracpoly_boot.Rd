@@ -22,7 +22,7 @@ fracpoly_boot(y, x, g, covar, q, x0q, xcoef, family = "gaussian", xpos,
 
 \item{xcoef}{the association between the exposure and the instrument.}
 
-\item{family}{a description of the error distribution and link function to be used in the model. For fracpoly_mr this can be a character string naming either the gaussian (i.e. for continuous data) or binomial (i.e. for binary data) family function.}
+\item{family}{a description of the error distribution and link function to be used in the model. For fracpoly_mr this can be a character string naming either the gaussian (i.e. "gaussian" for continuous data) or binomial (i.e. "binomial" for binary data) family function.}
 
 \item{xpos}{the position used to relate x to the localised average causal effect. The default is the mean of the x-values within each quantile, otherwise specify a percentile (e.g. 0.5 corresponds to the median value).}
 
