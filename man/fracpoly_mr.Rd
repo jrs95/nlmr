@@ -18,7 +18,7 @@ fracpoly_mr(y, x, g, covar = NULL, family = "gaussian", q = 10,
 
 \item{covar}{data.frame of covariates.}
 
-\item{family}{a description of the error distribution and link function to be used in the model. For fracpoly_mr this can be a character string naming either the gaussian (i.e. for continuous data) or binomial (i.e. for binary data) family function.}
+\item{family}{a description of the error distribution and link function to be used in the model. For fracpoly_mr this can be a character string naming either the gaussian (i.e. "gaussian" for continuous data) or binomial (i.e. "binomial" for binary data) family function.}
 
 \item{q}{the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).}
 
