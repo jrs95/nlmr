@@ -176,7 +176,7 @@ print.summary.piecewise_mr <- function(x, ...){
 #' @param xcoef the association between the exposure and the instrument.
 #' @param coef the coefficients of the localised causal effects. 
 #' @param x0q quantiles of x0 (the IV-free exposure).
-#' @param family a description of the error distribution and link function to be used in the model. For frac_poly_mr this can be a character string naming either the gaussian (i.e. for continuous data) or binomial (i.e. for binary data) family function.
+#' @param family a description of the error distribution and link function to be used in the model. For piecewise_mr this can be a character string naming either the gaussian (i.e. "gaussian" for continuous data) or binomial (i.e. "binomial" for binary data) family function.
 #' @param nboot the number of bootstrap replications (if required). The default is 100 replications.
 #' @param ref the reference point for the figure. This is the value of the function that represents the expected difference in the outcome compared with this reference value when the exposure is set to different values. The default is the mean of x.
 #' @param pref_x the prefix/label for the x-axis. The default is "x".
