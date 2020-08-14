@@ -25,7 +25,7 @@ piecewise_figure(y, x, g, covar = NULL, q = 10, xcoef, coef, x0q,
 
 \item{x0q}{quantiles of x0 (the IV-free exposure).}
 
-\item{family}{a description of the error distribution and link function to be used in the model. For frac_poly_mr this can be a character string naming either the gaussian (i.e. "gaussian" for continuous data) or binomial (i.e. "binomial" for binary data) family function.}
+\item{family}{a description of the error distribution and link function to be used in the model. For piecewise_mr this can be a character string naming either the gaussian (i.e. "gaussian" for continuous data) or binomial (i.e. "binomial" for binary data) family function.}
 
 \item{nboot}{the number of bootstrap replications (if required). The default is 100 replications.}
 
