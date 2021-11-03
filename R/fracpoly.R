@@ -268,10 +268,10 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
     fp_mod <- try(rma(coef ~ -1 + x1, vi=(coef_se)^2, method=method), silent=TRUE)
     if(is(fp_mod, "try-error")==T){
       likelihood_d1 <- c(likelihood_d1, NA)
-    }
-    else{
-      if(p1==0){fp1 <- fp_mod; p_ML <- p1}
-      else{
+    }else{
+      if(p1==0){
+        fp1 <- fp_mod; p_ML <- p1
+      }else{
         if(fp_mod$fit.stats[1,1]>=suppressWarnings(max(likelihood_d1, na.rm=T))){fp1 <- fp_mod; p_ML <- p1}
       }
       likelihood_d1 <- c(likelihood_d1, fp_mod$fit.stats[1,1])
@@ -301,8 +301,7 @@ fracpoly_best <- function(coef, coef_se, xmean, d=1, pd=0.05, method="FE"){
         if(p11==0 & p21==0){
           fp2 <- fp_mod
           p1_ML <- p11; p2_ML <- p21
-        }
-        else{
+        }else{
           if(fp_mod$fit.stats[1,1]>=suppressWarnings(max(likelihood_d2, na.rm=T))){fp2 <- fp_mod; p1_ML <- p11; p2_ML <- p21}
         }
         likelihood_d2 <- c(likelihood_d2, fp_mod$fit.stats[1,1])
@@ -379,8 +378,7 @@ fracpoly_boot <- function(y, x, g, covar, q, x0q, xcoef, family="gaussian", xpos
       if(p1_ML==-1){x1_boot<-xmean_boot^p1_ML}else{x1_boot <- (p1_ML+1)*xmean_boot^p1_ML}
       if(p1_ML==p2_ML){
         if(p2_ML==-1){x2_boot <- 2*(xmean_boot^p2_ML)*log(xmean_boot)}else{x2_boot <- ((p2_ML+1)*(xmean_boot^p2_ML)*log(xmean_boot) + xmean_boot^p2_ML)}
-      }
-      else{
+      }else{
         if(p2_ML==-1){x2_boot <- xmean_boot^p2_ML}else{x2_boot <- (p2_ML+1)*xmean_boot^p2_ML}
       }
       mod <- rma.uni(coef_boot ~ -1 + x1_boot + x2_boot, vi=(coef_se_boot)^2, method=method)
