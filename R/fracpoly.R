@@ -162,8 +162,11 @@ fracpoly_mr <- function(y, x, g, covar=NULL, family="gaussian", q=10, xpos="mean
   rownames(xcoef_quant) <- 1:nrow(xcoef_quant)
   p_tests <- as.matrix(data.frame(fp_d1_d2=fp_d12_p, fp=fp_p, quad=p_quadratic, Q=p_Q))
   p_heterogeneity <- as.matrix(data.frame(Q=p_het, trend=p_het_trend))
-  if(fig==F){results <- list(n=length(y), model=model, powers=powers, coefficients=coefficients, lace=loc, xcoef=xcoef_quant, p_tests=p_tests, p_heterogeneity=p_heterogeneity)}
-  else{results <- list(n=length(y), model=model, powers=powers, coefficients=coefficients, lace=loc, xcoef=xcoef_quant, p_tests=p_tests, p_heterogeneity=p_heterogeneity, figure=figure)}
+  if(fig==F){
+    results <- list(n=length(y), model=model, powers=powers, coefficients=coefficients, lace=loc, xcoef=xcoef_quant, p_tests=p_tests, p_heterogeneity=p_heterogeneity)
+  }else{
+    results <- list(n=length(y), model=model, powers=powers, coefficients=coefficients, lace=loc, xcoef=xcoef_quant, p_tests=p_tests, p_heterogeneity=p_heterogeneity, figure=figure)
+  }
   class(results) <- "fracpoly_mr"
   return(results)
 }
