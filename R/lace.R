@@ -61,7 +61,7 @@ iv_free <- function(y, x, g, covar, q, family="gaussian"){
   return(results)
 }
 
-#' Localised avergae causal effects 
+#' Localised average causal effects 
 #'
 #' lace computes the localised average causal effect for quantile.
 #' @param y vector of outcome values.
