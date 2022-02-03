@@ -36,7 +36,7 @@ hamardman.prod <- function(coef, covar){
 #' @return \item{x0q}{the quantiles of x0.} 
 #' @author James R Staley <js16174@bristol.ac.uk>
 #' @export
-iv_free <- function(y, x, g, covar, q, family="gaussian"){
+iv_free <- function(y, x, g, covar=NULL, q, family="gaussian"){
   if(family=="gaussian"){
     if(!is.null(covar)){model <- lm(x~g+covar)}else{model <- lm(x~g)}
     if(any(is.na(model$coef))) stop("there are missing regression coefficients in the regression of the exposure on the instrument and covariates")
