@@ -74,7 +74,7 @@ c3 = rbinom(10000,2,0.33)
 c = data.frame(c1=c1, c2=c2, c3=as.factor(c3))
 
 ### Analyses
-fp = fracpoly_mr(y, x, g, c, family="gaussian", q=10, d=1, ci="model_se", fig=T)
+fp = fracpoly_mr(y, x, g, c, family="gaussian", q=10, d="both", ci="model_se", fig=T)
 summary(fp)
 plm = piecewise_mr(y, x, g, c, family="gaussian", q=10, nboot=100, fig=T)
 summary(plm)
