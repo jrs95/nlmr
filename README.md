@@ -6,12 +6,15 @@ This package is used to assess non-linear exposure-outcome relationships using i
 * piecewise_mr - this method performs IV analysis using piecewise linear function
 
 ## Installation
-1. install.packages("devtools")
-2. library(devtools) 
-3. install_github("jrs95/nlmr")
-4. library(nlmr)
+```
+install.packages("devtools")
+library(devtools) 
+install_github("jrs95/nlmr")
+library(nlmr)
+```
 
 ## Example
+```
 \#\#\# IV (g), exposure (x) & outcome (y)  
 epsx = rexp(10000)  
 u    = runif(10000, 0, 1)  
@@ -32,6 +35,7 @@ fp = fracpoly_mr(y, x, g, c, family="gaussian", q=10, d="both", ci="model_se", f
 summary(fp)  
 plm = piecewise_mr(y, x, g, c, family="gaussian", q=10, nboot=50, fig=T)  
 summary(plm)
+```
 
 ## Citation 
 Staley JR and Burgess S. Semiparametric methods for estimation of a non-linear exposure-outcome relationship using instrumental variables with application to Mendelian randomization. Genet Epidemiol 2017;41(4):341-352. Link: http://onlinelibrary.wiley.com/doi/10.1002/gepi.22041
