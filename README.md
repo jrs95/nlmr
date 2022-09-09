@@ -15,7 +15,7 @@ library(nlmr)
 
 ## Example
 ```
-\#\#\# IV (g), exposure (x) & outcome (y)  
+### IV (g), exposure (x) & outcome (y)  
 epsx = rexp(10000)  
 u    = runif(10000, 0, 1)  
 g    = rbinom(10000, 2, 0.3)  
@@ -24,13 +24,13 @@ ag = 0.25
 x = 1 + ag\*g + u + epsx  
 y = 0.15\*x^2 + 0.8\*u + epsy 
 
-\#\#\# Covariates (c)  
+### Covariates (c)  
 c1 = rnorm(10000)  
 c2 = rnorm(10000)  
 c3 = rbinom(10000,2,0.33)  
 c = data.frame(c1=c1, c2=c2, c3=as.factor(c3))  
 
-\#\#\# Analyses  
+### Analyses  
 fp = fracpoly_mr(y, x, g, c, family="gaussian", q=10, d="both", ci="model_se", fig=T)  
 summary(fp)  
 plm = piecewise_mr(y, x, g, c, family="gaussian", q=10, nboot=50, fig=T)  
