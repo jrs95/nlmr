@@ -20,7 +20,7 @@ epsx = rexp(10000)
 u    = runif(10000, 0, 1)  
 g    = rbinom(10000, 2, 0.3)  
 epsy = rnorm(10000)  
-ag = 0.25  
+ag   = 0.25  
 x = 1 + ag*g + u + epsx  
 y = 0.15*x^2 + 0.8*u + epsy 
 
