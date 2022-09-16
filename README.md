@@ -8,32 +8,32 @@ This package is used to assess non-linear exposure-outcome relationships using i
 ## Installation
 ```
 install.packages("devtools")
-library(devtools) 
+library(devtools)
 install_github("jrs95/nlmr")
 library(nlmr)
 ```
 
 ## Example
 ```
-### IV (g), exposure (x) & outcome (y)  
-epsx = rexp(10000)  
-u    = runif(10000, 0, 1)  
-g    = rbinom(10000, 2, 0.3)  
-epsy = rnorm(10000)  
-ag   = 0.25  
-x = 1 + ag*g + u + epsx  
-y = 0.15*x^2 + 0.8*u + epsy 
+### IV (g), exposure (x) & outcome (y)
+epsx <- rexp(10000)
+u <- runif(10000, 0, 1)
+g <- rbinom(10000, 2, 0.3)
+epsy <- rnorm(10000)
+ag <- 0.25
+x <- 1 + ag * g + u + epsx
+y <- 0.15 * x^2 + 0.8 * u + epsy
 
-### Covariates (c)  
-c1 = rnorm(10000)  
-c2 = rnorm(10000)  
-c3 = rbinom(10000,2,0.33)  
-c = data.frame(c1=c1, c2=c2, c3=as.factor(c3))  
+### Covariates (c)
+c1 = rnorm(10000)
+c2 = rnorm(10000)
+c3 = rbinom(10000, 2, 0.33)
+c = data.frame(c1 = c1, c2 = c2, c3 = as.factor(c3))
 
-### Analyses  
-fp = fracpoly_mr(y, x, g, c, family="gaussian", q=10, d="both", ci="model_se", fig=T)  
-summary(fp)  
-plm = piecewise_mr(y, x, g, c, family="gaussian", q=10, nboot=50, fig=T)  
+### Analyses
+fp = fracpoly_mr(y, x, g, c, family = "gaussian", q = 10, d = "both", ci = "model_se", fig = TRUE)
+summary(fp)
+plm = piecewise_mr(y, x, g, c, family = "gaussian", q = 10, nboot = 50, fig = TRUE)
 summary(plm)
 ```
 
