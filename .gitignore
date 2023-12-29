@@ -1,6 +1,4 @@
 .lintr
-/src/*.so
-/src/*.o
 docs
 .DS_Store
 .Rproj.user
