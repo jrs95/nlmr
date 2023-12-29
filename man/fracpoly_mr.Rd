@@ -2,98 +2,187 @@
 % Please edit documentation in R/fracpoly.R
 \name{fracpoly_mr}
 \alias{fracpoly_mr}
-\title{Instrumental variable analysis using fractional polynomials}
+\title{Fractional polynomial Mendelian randomization}
 \usage{
-fracpoly_mr(y, x, g, covar = NULL, family = "gaussian", q = 10,
-  xpos = "mean", method = "FE", d = 1, pd = 0.05, ci = "model_se",
-  nboot = 100, fig = F, ref = mean(x), pref_x = "x", pref_x_ref = "x",
-  pref_y = "y", ci_type = "overall", ci_quantiles = 10, breaks = NULL)
+fracpoly_mr(
+  y,
+  x,
+  g,
+  covar = NULL,
+  family = "gaussian",
+  q = 10,
+  xpos = "mean",
+  method = "FE",
+  d = 1,
+  pd = 0.05,
+  ci = "model_se",
+  nboot = 100,
+  fig = FALSE,
+  ref = mean(x),
+  pref_x = "x",
+  pref_x_ref = "x",
+  pref_y = "y",
+  ci_type = "overall",
+  ci_quantiles = 10,
+  breaks = NULL
+)
 }
 \arguments{
-\item{y}{vector of outcome values.}
+\item{y}{vector of outcome values}
 
-\item{x}{vector of exposure values.}
+\item{x}{vector of exposure values}
 
-\item{g}{the instrumental variable.}
+\item{g}{the instrumental variable}
 
-\item{covar}{data.frame of covariates.}
+\item{covar}{\code{data.frame} of covariates}
 
-\item{family}{a description of the error distribution and link function to be used in the model. For fracpoly_mr this can be a character string naming either the gaussian (i.e. "gaussian" for continuous data) or binomial (i.e. "binomial" for binary data) family function.}
+\item{family}{a description of the error distribution and link function
+to be used in the model and is a \code{character} string naming either the
+gaussian (i.e. \code{"gaussian"} for continuous data) or binomial
+(i.e. \code{"binomial"} for binary data) family function (default: \code{"gaussian"})}
 
-\item{q}{the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).}
+\item{q}{the number of quantiles the exposure distribution is to be split
+into within which a causal effect will be fitted, known as localised
+average causal effects (LACE) (default: \code{10})}
 
-\item{xpos}{the position used to relate x to the localised average causal effect. The default is the mean of the x-values within each quantile, otherwise specify a percentile (e.g. 0.5 corresponds to the median value).}
+\item{xpos}{the position used to relate \code{x} to the localised average causal
+effect, this can either be the mean of the x-values within each quantile
+or a percentile (e.g. 0.5 corresponds to the median value)
+(default: \code{"mean"})}
 
-\item{method}{meta-regression method parsed to the rma package. The default is fixed-effects ("FE").}
+\item{method}{meta-regression method parsed to the \code{metafor} package,
+e.g. the fixed-effects model (default: \code{"FE"})}
 
-\item{d}{fractional polynomial degree. The default is degree 1. The other options are: 1, 2, or "both".}
+\item{d}{fractional polynomial degree, the options are: \code{1}, \code{2},
+or \code{"both"} (default: \code{1})}
 
-\item{pd}{p-value cut-off for choosing the best-fitting fractional polynomial of degree 2 over the best-fitting fractional polynomial degree 1. This option is only used if d="both". The default is 0.05.}
+\item{pd}{p-value cut-off for choosing the best-fitting fractional polynomial
+of degree 2 over the best-fitting fractional polynomial degree 1, used only
+if \code{d = "both"} (default: \code{0.05})}
 
-\item{ci}{the type of 95\% confidence interval. There are three options: (i) using the model standard errors ("model_se"), (ii) using bootstrap standard errors ("bootstrap_se"), (iii) using bootstrap percentile confidence intervals ("bootstrap_per"). The default is the model standard errors.}
+\item{ci}{the type of 95\\% confidence interval, there are three options:
+(i) using the model standard errors (\code{"model_se"}),
+(ii) using bootstrap standard errors (\code{"bootstrap_se"}), and
+(iii) using bootstrap percentile confidence intervals (\code{"bootstrap_per"})
+(default: \code{"model_se"})}
 
-\item{nboot}{the number of bootstrap replications (if required). The default is 100 replications.}
+\item{nboot}{the number of bootstrap replications (default: \code{100})}
 
-\item{fig}{a logical statement as to whether the user wants the results displayed in a figure. The default is false.}
+\item{fig}{a \code{logical} statement as to whether the user wants the results
+displayed in a figure (default: \code{FALSE})}
 
-\item{ref}{the reference point for the figure. This is the value of the function that represents the expected difference in the outcome compared with this reference value when the exposure is set to different values. The default is the mean of x.}
+\item{ref}{the reference point for the figure, this is the value of the
+function that represents the expected difference in the outcome compared
+with this reference value when the exposure is set to different values
+(default: \code{mean(x)})}
 
-\item{pref_x}{the prefix/label for the x-axis. The default is "x".}
+\item{pref_x}{the prefix/label for the x-axis (default: \code{"x"})}
 
-\item{pref_x_ref}{the prefix for the reference value displayed on the y-axis. The default is "x".}
+\item{pref_x_ref}{the prefix for the reference value displayed on the y-axis
+(default: \code{"x"})}
 
-\item{pref_y}{the prefix/label for the y-axis. The default is "y".}
+\item{pref_y}{the prefix/label for the y-axis (default: \code{"y"})}
 
-\item{ci_type}{the type of confidence interval to be displayed on the graph. The default is "overall" where confidence intervals are presented as bands across the range of x. The alternative option is "quantile" where the confidence intervals are presented as error bars at the mean in each quantile of x.}
+\item{ci_type}{the type of confidence interval to be displayed on the
+graph, where confidence intervals are either presented as bands across the
+range of x (option: \code{"overall"}) or as error bars at the mean in each
+quantile of x (option: \code{"quantile"}) (default:)}
 
-\item{ci_quantiles}{the number of quantiles at which confidence intervals are to be displayed. The default is deciles (i.e. 10).}
+\item{ci_quantiles}{the number of quantiles at which confidence intervals
+are to be displayed (default: \code{10})}
 
-\item{breaks}{breaks on the y-axis of the figure.}
+\item{breaks}{breaks on the y-axis of the figure}
 }
 \value{
-List of non-linear MR results from the fractional polynomial MR approach.
+\code{fracpoly_mr} returns a \code{list} of non-linear MR results from the
+fractional polynomial MR approach:
 
-\item{n}{number of individuals.}
+\item{n}{number of individuals}
 
-\item{model}{the model specifications. The first column is the number of quantiles (q); the second column is the position used to relate x to the LACE in each quantiles (xpos); the third column is the type of confidence interval constructed (ci); the fourth column is the number of bootstrap replications performed (nboot).}
+\item{model}{
+the model specifications:
+number of quantiles (\code{q}),
+position used to relate x to the LACE in each quantiles (\code{xpos}),
+type of confidence interval constructed (\code{ci}),
+number of bootstrap replications performed (\code{nboot})
+}
 
-\item{powers}{the powers of the chosen polynomial.}
+\item{powers}{the powers of the chosen polynomial}
 
-\item{coefficients}{the regression estimates. The first column is the regression coefficients (beta); the second column is the standard errors of regression coefficients (se); the third column is the lower confidence interval (lci); the fourth column is the upper confidence interval (uci); the fifth column is the p-value (pval).}
+\item{coefficients}{
+the regression estimates:
+regression coefficients (\code{beta}),
+standard errors of regression coefficients (\code{se}),
+lower 95\% confidence interval (\code{lci}),
+upper 95\% confidence interval (\code{uci}),
+p-value (\code{pval})
+}
 
-\item{lace}{the localised average causal effect estimate in each quantile. The first column is the regression coefficients (beta); the second column is the standard errors of regression coefficients (se); the third column is the lower confidence interval (lci); the fourth column is the upper confidence interval (uci); the fifth column is the p-value (pval).}
+\item{lace}{
+the localised average causal effect estimate in each quantile:
+regression coefficients (\code{beta}),
+standard errors of regression coefficients (\code{se}),
+lower 95\% confidence interval (\code{lci}),
+upper 95\% confidence interval (\code{uci}),
+p-value (\code{pval})
+}
 
-\item{xcoef}{the association between the instrument and the exposure in each quantile. The first column is the regression coefficients (beta); the second column is the standard errors of regression coefficients (se).}
+\item{xcoef}{
+the association between the instrument and the exposure in each quantile:
+regression coefficients (\code{beta}),
+standard errors of regression coefficients (\code{se})
+}
 
-\item{p_tests}{the p-value of the non-linearity tests. The first column is the p-value of the test between the fractional polynomial degrees (fp_d1_d2); the second column is the p-value from the fractional polynomial non-linearity test (fp); the third column is the p-value from the quadratic test (quad); the fourth column is the p-value from the Cochran Q test (Q).}
+\item{p_tests}{
+the p-value of the non-linearity tests:
+p-value of the test between the fractional polynomial degrees (\code{fp_d1_d2}),
+p-value from the fractional polynomial non-linearity test (\code{fp}),
+p-value from the quadratic test (\code{quad}),
+p-value from the Cochran Q test (\code{Q})
+}
 
-\item{p_heterogeneity}{the p-value of heterogeneity. The first column is the p-value of the Cochran Q heterogeneity test (Q); the second column is the p-value from the trend test (trend).}
+\item{p_heterogeneity}{
+the p-value of heterogeneity:
+p-value of the Cochran Q heterogeneity test (\code{Q}),
+p-value from the trend test (\code{trend}).
+}
 }
 \description{
-fracpoly_mr performs instumental variable analysis by fitting fractional polynomial models to localised average causal effects using meta-regression.
+\code{fracpoly_mr} performs a Mendelian randomization (MR)
+analysis by fitting fractional polynomial models to localised
+average causal effects using meta-regression.
 }
 \examples{
-### IV (g), exposure (x) & outcome (y)
-epsx = rexp(10000)
-u = runif(10000, 0, 1)
-g = rbinom(10000, 2, 0.3)
-epsy = rnorm(10000)
-ag = 0.25
-x = 1 + ag*g + u + epsx
-y = 0.15*x^2 + 0.8*u + epsy
+# IV (g), exposure (x) & outcome (y)
+epsx <- rexp(10000)
+u <- runif(10000, 0, 1)
+g <- rbinom(10000, 2, 0.3)
+epsy <- rnorm(10000)
+ag <- 0.25
+x <- 1 + ag * g + u + epsx
+y <- 0.15 * x^2 + 0.8 * u + epsy
 
-### Covariates (c)
-c1 = rnorm(10000)
-c2 = rnorm(10000)
-c3 = rbinom(10000,2,0.33)
-c = data.frame(c1=c1, c2=c2, c3=as.factor(c3))
+# Covariates (covar)
+c1 <- rnorm(10000)
+c2 <- rnorm(10000)
+c3 <- rbinom(10000, 2, 0.33)
+covar <- data.frame(c1 = c1, c2 = c2, c3 = as.factor(c3))
 
-### Analyses
-fp = fracpoly_mr(y, x, g, c, family="gaussian", q=10, d="both", ci="model_se", fig=T)
+# Analyses
+fp <- fracpoly_mr(
+  y = y , x = x, g = g, covar = covar,
+  family = "gaussian", q = 10, d = 1, ci = "model_se",
+  fig = TRUE
+)
 summary(fp)
-plm = piecewise_mr(y, x, g, c, family="gaussian", q=10, nboot=100, fig=T)
+plm <- piecewise_mr(
+  y = y , x = x, g = g, covar = covar,
+  family = "gaussian", q = 10, nboot = 100,
+  fig = TRUE
+)
 summary(plm)
+
 }
 \author{
-James R Staley <jrstaley95@gmail.com>
+James Staley \href{mailto:jrstaley95@gmail.com}{jrstaley95@gmail.com}
 }

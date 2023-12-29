@@ -2,46 +2,70 @@
 % Please edit documentation in R/lace.R
 \name{lace}
 \alias{lace}
-\title{Localised avergae causal effects}
+\title{Localised average causal effects}
 \usage{
-lace(y, x, g, covar = NULL, q, x0q, xc_sub = TRUE, family = "gaussian",
-  xpos = "mean")
+lace(
+  y,
+  x,
+  g,
+  covar = NULL,
+  q,
+  x0q,
+  xc_sub = TRUE,
+  family = "gaussian",
+  xpos = "mean"
+)
 }
 \arguments{
-\item{y}{vector of outcome values.}
+\item{y}{vector of outcome values}
 
-\item{x}{vector of exposure values.}
+\item{x}{vector of exposure values}
 
-\item{g}{the instrumental variable.}
+\item{g}{the instrumental variable}
 
-\item{covar}{data.frame of covariates.}
+\item{covar}{\code{data.frame} of covariates}
 
-\item{q}{the number of quantiles the exposure distribution is to be split into. Within each quantile a causal effect will be fitted, known as a localised average causal effect (LACE). The default is deciles (i.e. 10 quantiles).}
+\item{q}{the number of quantiles the exposure distribution is to be split
+into within which a causal effect will be fitted, known as localised
+average causal effects (LACE) (default: \code{10})}
 
-\item{x0q}{quantiles of x0 (the IV-free exposure).}
+\item{x0q}{quantiles of x0 (the IV-free exposure)}
 
-\item{xc_sub}{compute the association between the exposure and the insturment in each quantile of x0.}
+\item{xc_sub}{compute the association between the exposure and the insturment
+in each quantile of x0}
 
-\item{family}{a description of the error distribution and link function to be used in the model (either "gaussian" or "binomial" can be specified).}
+\item{family}{a description of the error distribution and link function
+to be used in the model and is a \code{character} string naming either the
+gaussian (i.e. \code{"gaussian"} for continuous data) or binomial
+(i.e. \code{"binomial"} for binary data) family function (default: \code{"gaussian"})}
 
-\item{xpos}{the position used to relate x to the localised average causal effect. The default is the mean of the x-values within each quantile, otherwise specify a percentile (e.g. 0.5 corresponds to the median value).}
+\item{xpos}{the position used to relate \code{x} to the localised average causal
+effect, this can either be the mean of the x-values within each quantile
+or a percentile (e.g. 0.5 corresponds to the median value)
+(default: \code{"mean"})}
 }
 \value{
-List of results for the localised average causal effects for quantile.
+\code{lace} returns a \code{data.frame} of the LACE for quantile:
 
-\item{coef}{the localised average causal effect in each quantile.}
+\item{coef}{the LACE in each quantile}
 
-\item{coef_se}{the IV-free exposure.}
+\item{coef_se}{the standard error of the LACE in each quantile}
 
-\item{xmean}{the mean of the exposure in each quantile.}
+\item{xmean}{the mean of the exposure in each quantile}
 
-\item{xcoef_sub}{the association between the exposure and the instrument in each quantile.}
+\item{xcoef_sub}{
+the association between the exposure and the instrument in each quantile
+}
 
-\item{xcoef_sub_se}{the standard error of the association between the exposure and the instrument in each quantile}
+\item{xcoef_sub_se}{
+the standard error of the association between the exposure and the
+instrument in each quantile
+}
 }
 \description{
-lace computes the localised average causal effect for quantile.
+\code{lace} computes the localised average causal effect
+for each quantile.
 }
 \author{
-James R Staley <jrstaley95@gmail.com>
+James Staley \href{mailto:jrstaley95@gmail.com}{jrstaley95@gmail.com}
 }

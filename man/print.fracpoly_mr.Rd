@@ -2,16 +2,16 @@
 % Please edit documentation in R/fracpoly.R
 \name{print.fracpoly_mr}
 \alias{print.fracpoly_mr}
-\title{Print fractional polynomial fits}
+\title{Print fracpoly_mr}
 \usage{
 \method{print}{fracpoly_mr}(x, ...)
 }
 \arguments{
-\item{x}{an object of class "fracpoly_mr".}
+\item{x}{an object of class \code{"fracpoly_mr"}}
 }
 \description{
-print method for class "fracpoly_mr".
+print method for class \code{"fracpoly_mr"}.
 }
 \author{
-James R Staley <jrstaley95@gmail.com>
+James Staley \href{mailto:jrstaley95@gmail.com}{jrstaley95@gmail.com}
 }

@@ -1,0 +1,17 @@
+
+bibentry(
+  bibtype = "Article",
+  header = "To cite `nlmr` in publications please use:",
+  author = c(
+    person("J.R.", "Staley"),
+    person("S.", "Burgess")
+  ),
+  title = "Semiparametric methods for estimation of a nonlinear exposure-outcome relationship using instrumental variables with application to Mendelian randomization",
+  year = 2017,
+  key = "nlmr",
+  doi = "10.1002/gepi.22041",
+  journal = "Genetic epidemiology",
+  volume = 41,
+  number = 4,
+  pages = "341--352"
+)

@@ -2,16 +2,16 @@
 % Please edit documentation in R/piecewise.R
 \name{summary.piecewise_mr}
 \alias{summary.piecewise_mr}
-\title{Summary of piecewise linear fits}
+\title{Summary of piecewise_mr}
 \usage{
 \method{summary}{piecewise_mr}(x, ...)
 }
 \arguments{
-\item{x}{an object of class "piecewise_mr".}
+\item{x}{an object of class \code{"piecewise_mr"}}
 }
 \description{
-summary method for class "piecewise_mr".
+summary method for class \code{"piecewise_mr"}.
 }
 \author{
-James R Staley <jrstaley95@gmail.com>
+James Staley \href{mailto:jrstaley95@gmail.com}{jrstaley95@gmail.com}
 }

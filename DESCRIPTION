@@ -1,14 +1,26 @@
 Package: nlmr
 Title: Non-linear Mendelian randomisation
-Version: 2.0
-Date: 02-08-2018
-Author: James Staley
-Maintainer: James Staley <jrstaley95@gmail.com>
-Description: This package is used to assess non-linear exposure-outcome relationships using instrumental variable analysis in the context of Mendelian randomisation.
-Depends: R (>= 3.2.0), methods
-License: GPL (>= 2)
+Version: 1.0.2
+Date: 29-12-2023
+Authors@R: c(
+    person(
+        given = "James",
+        family = "Staley",
+        email = "jrstaley95@gmail.com",
+        role = c("aut", "cre"),
+        comment = c(ORCID = "0009-0001-9520-5011")
+    )
+  )
+Description: This package is used to assess non-linear exposure-outcome
+    relationships using instrumental variable analysis in the context
+    of Mendelian randomisation.
+License: GPL-3
+URL: https://jrs95.github.io/nlmr/, https://github.com/jrs95/nlmr
+BugReports: https://github.com/jrs95/nlmr/issues
+Depends:
+    R (>= 3.6.0)
 ByteCompile: TRUE
 LazyData: TRUE
 Encoding: UTF-8
 Imports: ggplot2, matrixStats, metafor
-RoxygenNote: 6.0.1.9000
+RoxygenNote: 7.2.3
