@@ -602,8 +602,8 @@ piecewise_figure <- function(y, x, g, covar = NULL,
         )
       ) +
       theme(
-        axis.title = element_text(vjust = 0.5, size = 20),
-        axis.text = element_text(size = 18),
+        axis.title = element_text(vjust = 0.5, size = 16),
+        axis.text = element_text(size = 14),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank()
       )
@@ -644,8 +644,8 @@ piecewise_figure <- function(y, x, g, covar = NULL,
         )
       ) +
       theme(
-        axis.title = element_text(vjust = 0.5, size = 20),
-        axis.text = element_text(size = 18),
+        axis.title = element_text(vjust = 0.5, size = 16),
+        axis.text = element_text(size = 14),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank()
       )
