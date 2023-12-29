@@ -170,13 +170,13 @@ covar <- data.frame(c1 = c1, c2 = c2, c3 = as.factor(c3))
 
 # Analyses
 fp <- fracpoly_mr(
-  y = y , x = x, g = g, covar = covar,
+  y = y, x = x, g = g, covar = covar,
   family = "gaussian", q = 10, d = 1, ci = "model_se",
   fig = TRUE
 )
 summary(fp)
 plm <- piecewise_mr(
-  y = y , x = x, g = g, covar = covar,
+  y = y, x = x, g = g, covar = covar,
   family = "gaussian", q = 10, nboot = 100,
   fig = TRUE
 )
