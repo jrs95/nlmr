@@ -918,7 +918,7 @@ fracpoly_boot <- function(y, x, g, covar, q, x0q, xcoef,
 #' @param p2_ML the second power of the best-fitting fractional polynomial of
 #'   degree 2 (default: `NULL`)
 #'
-#' @param ci the type of 95\% confidence interval, there are three options:
+#' @param ci the type of 95% confidence interval, there are three options:
 #'   (i) using the model standard errors (`"model_se"`),
 #'   (ii) using bootstrap standard errors (`"bootstrap_se"`), and
 #'   (iii) using bootstrap percentile confidence intervals (`"bootstrap_per"`)
