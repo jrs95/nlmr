@@ -111,13 +111,13 @@
 #'
 #' # Analyses
 #' fp <- fracpoly_mr(
-#'   y = y , x = x, g = g, covar = covar,
+#'   y = y, x = x, g = g, covar = covar,
 #'   family = "gaussian", q = 10, d = 1, ci = "model_se",
 #'   fig = TRUE
 #' )
 #' summary(fp)
 #' plm <- piecewise_mr(
-#'   y = y , x = x, g = g, covar = covar,
+#'   y = y, x = x, g = g, covar = covar,
 #'   family = "gaussian", q = 10, nboot = 100,
 #'   fig = TRUE
 #' )
@@ -127,57 +127,67 @@
 #'
 #' @export
 #' @md
-piecewise_mr <- function(
-  y, x, g, covar = NULL,
+piecewise_mr <- function(y, x, g, covar = NULL,
   family = "gaussian", q = 10, xpos = "mean", nboot = 100,
   fig = TRUE, ref = mean(x), pref_x = "x", pref_x_ref = "x", pref_y = "y",
-  ci_quantiles = 10, breaks = NULL
-) {
+  ci_quantiles = 10, breaks = NULL) {
 
   # Errors
-  if (!(is.vector(y) && is.vector(x) && is.vector(g)))
+  if (!(is.vector(y) && is.vector(x) && is.vector(g))) {
     stop("either the outcome, exposure or instrument is not a vector")
-  if (!is.null(covar) && !is.data.frame(covar))
+  }
+  if (!is.null(covar) && !is.data.frame(covar)) {
     stop("covar has to be a data.frame")
+  }
   if (
     !(
       (is.numeric(y) || is.integer(y)) &&
         (is.numeric(x) || is.integer(x)) &&
         (is.numeric(g) || is.integer(g))
     )
-  )
+  ) {
     stop("either the outcome, exposure or instrument is not numeric")
-  if (length(y) <= 1)
+  }
+  if (length(y) <= 1) {
     stop("the outcome is less than or equal to a single value")
-  if (length(y) != length(x) || length(y) != length(g))
+  }
+  if (length(y) != length(x) || length(y) != length(g)) {
     stop(
       "the number of observations for the outcome, exposure and instrument ",
       "are not all the same"
     )
-  if (!is.null(covar) && nrow(covar) != length(y))
+  }
+  if (!is.null(covar) && nrow(covar) != length(y)) {
     stop(
       "the number of observations for the outcome and covariates are not ",
       "the same"
     )
-  if (any(is.na(y)) || any(is.na(x)) || any(is.na(g)))
+  }
+  if (any(is.na(y)) || any(is.na(x)) || any(is.na(g))) {
     stop(
       "there are missing values in either the outcome, exposure or ",
       "instrument"
     )
-  if (!is.null(covar) && any(is.na(covar)))
+  }
+  if (!is.null(covar) && any(is.na(covar))) {
     stop("there are missing values in the covariates")
-  if (!(family == "gaussian" || family == "binomial"))
+  }
+  if (!(family == "gaussian" || family == "binomial")) {
     stop("family has to be equal to either \"gaussian\" or \"binomial\"")
-  if (family == "binomial" && any(!(y == 1 | y == 0)))
+  }
+  if (family == "binomial" && any(!(y == 1 | y == 0))) {
     stop("y has to be 0 or 1 if family is equal to \"binomial\"")
-  if ((length(y) / 10) < q)
+  }
+  if ((length(y) / 10) < q) {
     stop("the quantiles should contain at least 10 observations")
+  }
 
   # Covariates
   if (!is.null(covar)) {
     covar <- model.matrix(as.formula(~.), data = covar)[, -1, drop = FALSE]
-    if (any(is.na(covar)))
+    if (any(is.na(covar))) {
       stop("there are missing values in the covariates")
+    }
   }
 
   # x0 (IV-Free)
@@ -405,13 +415,11 @@ print.summary.piecewise_mr <- function(x, ...) {
 #'
 #' @noRd
 #' @md
-piecewise_figure <- function(
-  y, x, g, covar = NULL,
+piecewise_figure <- function(y, x, g, covar = NULL,
   q = 10, xcoef, coef, x0q,
   family = "gaussian", nboot = 100, ref = mean(x),
   pref_x = "x", pref_x_ref = "x", pref_y = "y",
-  ci_quantiles = 10, breaks = NULL
-) {
+  ci_quantiles = 10, breaks = NULL) {
 
   # Piecewise function
   m <- NULL
@@ -584,7 +592,8 @@ piecewise_figure <- function(
       geom_point(
         mapping = aes(x = x, y = y), data = plot.data.2,
         colour = "red", size = 3
-      ) + theme_bw() +
+      ) +
+      theme_bw() +
       labs(
         x = pref_x,
         y = bquote(

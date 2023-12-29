@@ -36,8 +36,9 @@ reprow <- function(x, n) {
 #' @noRd
 #' @md
 hamardman.prod <- function(coef, covar) {
-  if (length(coef) != ncol(covar))
+  if (length(coef) != ncol(covar)) {
     stop("the number of coefficients is greater than the number of covariates")
+  }
   output <- reprow(coef, nrow(covar)) * covar
   return(output)
 }
@@ -86,30 +87,33 @@ iv_free <- function(y, x, g, covar = NULL, q, family = "gaussian") {
     } else {
       model <- lm(x ~ g)
     }
-    if (any(is.na(model$coef)))
+    if (any(is.na(model$coef))) {
       stop(
         "there are missing regression coefficients in the regression of the ",
         "exposure on the instrument and covariates"
       )
+    }
     x0 <- resid(model)
     xcoef <- model$coef[2]
   }
   if (family == "binomial") {
     if (!is.null(covar)) {
       model <- lm(x[y == 0] ~ g[y == 0] + covar[y == 0, , drop = FALSE])
-      if (any(is.na(model$coef)))
+      if (any(is.na(model$coef))) {
         stop(
           "there are missing regression coefficients in the regression of the ",
           "exposure on the instrument and covariates in the controls"
         )
+      }
       x0 <- x - (model$coef[1] + model$coef[2] * g + rowSums(hamardman.prod(model$coef[3:length(model$coef)], covar)))
     } else {
       model <- lm(x[y == 0] ~ g[y == 0])
-      if (any(is.na(model$coef)))
+      if (any(is.na(model$coef))) {
         stop(
           "there are missing regression coefficients in the regression of the ",
           "exposure on the instrument and covariates in the controls"
         )
+      }
       x0 <- x - (model$coef[1] + model$coef[2] * g)
     }
     xcoef <- model$coef[2]
@@ -175,11 +179,10 @@ iv_free <- function(y, x, g, covar = NULL, q, family = "gaussian") {
 #'
 #' @export
 #' @md
-lace <- function(
-  y, x, g, covar = NULL,
+lace <- function(y, x, g, covar = NULL,
   q, x0q, xc_sub = TRUE,
-  family = "gaussian", xpos = "mean"
-) {
+  family = "gaussian", xpos = "mean") {
+
   coef <- NULL
   coef_se <- NULL
   xmean <- NULL
@@ -192,11 +195,12 @@ lace <- function(
       } else {
         model <- lm(y[x0q == i] ~ g[x0q == i] + covar[x0q == i, , drop = FALSE])
       }
-      if (is.na(model$coef[2]))
+      if (is.na(model$coef[2])) {
         stop(
           "the regression coefficient of the outcome on the instrument in one ",
           "of the quantiles is missing"
         )
+      }
       coef[i] <- model$coef[2]
       coef_se[i] <- summary(model)$coef[2, 2]
     }
@@ -209,11 +213,12 @@ lace <- function(
           family = binomial
         )
       }
-      if (is.na(model$coef[2]))
+      if (is.na(model$coef[2])) {
         stop(
           "the regression coefficient of the outcome on the instrument in one ",
           "of the quantiles is missing"
         )
+      }
       coef[i] <- model$coef[2]
       coef_se[i] <- summary(model)$coef[2, 2]
     }
@@ -232,11 +237,12 @@ lace <- function(
             x[x0q == i] ~ g[x0q == i] + covar[x0q == i, , drop = FALSE]
           )
         }
-        if (is.na(xcoefs$coef[2]))
+        if (is.na(xcoefs$coef[2])) {
           stop(
             "the regression coefficient of the exposure on the instrument in ",
             "one of the quantiles is missing"
           )
+        }
         xcoef_sub[i] <- xcoefs$coef[2]
         xcoef_sub_se[i] <- summary(xcoefs)$coef[2, 2]
       }
@@ -250,11 +256,12 @@ lace <- function(
                 covar[(x0q == i & y == 0), , drop = FALSE]
           )
         }
-        if (is.na(xcoefs$coef[2]))
+        if (is.na(xcoefs$coef[2])) {
           stop(
             "the regression coefficient of the exposure on the instrument in ",
             "one of the quantiles is missing"
           )
+        }
         xcoef_sub[i] <- xcoefs$coef[2]
         xcoef_sub_se[i] <- summary(xcoefs)$coef[2, 2]
       }
@@ -269,4 +276,5 @@ lace <- function(
     output <- data.frame(coef = coef, coef_se = coef_se, xmean = xmean)
   }
   return(output)
+
 }

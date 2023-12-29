@@ -144,13 +144,13 @@
 #'
 #' # Analyses
 #' fp <- fracpoly_mr(
-#'   y = y , x = x, g = g, covar = covar,
+#'   y = y, x = x, g = g, covar = covar,
 #'   family = "gaussian", q = 10, d = 1, ci = "model_se",
 #'   fig = TRUE
 #' )
 #' summary(fp)
 #' plm <- piecewise_mr(
-#'   y = y , x = x, g = g, covar = covar,
+#'   y = y, x = x, g = g, covar = covar,
 #'   family = "gaussian", q = 10, nboot = 100,
 #'   fig = TRUE
 #' )
@@ -160,69 +160,83 @@
 #'
 #' @export
 #' @md
-fracpoly_mr <- function(
-  y, x, g, covar = NULL,
+fracpoly_mr <- function(y, x, g, covar = NULL,
   family = "gaussian", q = 10, xpos = "mean",
   method = "FE", d = 1, pd = 0.05, ci = "model_se", nboot = 100,
   fig = FALSE, ref = mean(x), pref_x = "x", pref_x_ref = "x", pref_y = "y",
-  ci_type = "overall", ci_quantiles = 10, breaks = NULL
-) {
+  ci_type = "overall", ci_quantiles = 10, breaks = NULL) {
 
   # Errors
-  if (!(is.vector(y) && is.vector(x) && is.vector(g)))
+  if (!(is.vector(y) && is.vector(x) && is.vector(g))) {
     stop("either the outcome, exposure or instrument is not a vector")
-  if (!is.null(covar) && !is.data.frame(covar))
+  }
+  if (!is.null(covar) && !is.data.frame(covar)) {
     stop("covar has to be a data.frame")
+  }
   if (
     !(
       (is.numeric(y) || is.integer(y)) &&
         (is.numeric(x) || is.integer(x)) &&
         (is.numeric(g) || is.integer(g))
     )
-  )
+  ) {
     stop("either the outcome, exposure or instrument is not numeric")
-  if (any(x <= 1))
+  }
+  if (any(x <= 1)) {
     stop("fractional polynomial models require the exposure to be >>1")
-  if (length(y) <= 1)
+  }
+  if (length(y) <= 1) {
     stop("the outcome is less than or equal to a single value")
-  if (length(y) != length(x) || length(y) != length(g))
+  }
+  if (length(y) != length(x) || length(y) != length(g)) {
     stop(
       "the number of observations for the outcome, exposure and instrument ",
       "are not all the same"
     )
-  if (!is.null(covar) && nrow(covar) != length(y))
+  }
+  if (!is.null(covar) && nrow(covar) != length(y)) {
     stop(
       "the number of observations for the outcome and covariates are not ",
       "the same"
     )
-  if (any(is.na(y)) || any(is.na(x)) || any(is.na(g)))
+  }
+  if (any(is.na(y)) || any(is.na(x)) || any(is.na(g))) {
     stop(
       "there are missing values in either the outcome, exposure or ",
       "instrument"
     )
-  if (!is.null(covar) && any(is.na(covar)))
+  }
+  if (!is.null(covar) && any(is.na(covar))) {
     stop("there are missing values in the covariates")
-  if (!(family == "gaussian" || family == "binomial"))
+  }
+  if (!(family == "gaussian" || family == "binomial")) {
     stop("family has to be equal to either \"gaussian\" or \"binomial\"")
-  if (family == "binomial" && any(!(y == 1 | y == 0)))
+  }
+  if (family == "binomial" && any(!(y == 1 | y == 0))) {
     stop("y has to be 0 or 1 if family is equal to \"binomial\"")
-  if ((length(y) / 10) < q)
+  }
+  if ((length(y) / 10) < q) {
     stop("the quantiles should contain at least 10 observations")
-  if (!(xpos == "mean" || (xpos > 0 && xpos < 1)))
+  }
+  if (!(xpos == "mean" || (xpos > 0 && xpos < 1))) {
     stop("the position used to relate x to the localised average causal effect")
-  if (!(d == 1 || d == 2 || d == "both"))
+  }
+  if (!(d == 1 || d == 2 || d == "both")) {
     stop("the degree has to be equal to 1, 2 or \"both\"")
-  if (!(ci == "model_se" || ci == "bootstrap_se" || ci == "bootstrap_per"))
+  }
+  if (!(ci == "model_se" || ci == "bootstrap_se" || ci == "bootstrap_per")) {
     stop(
       "the confidence intervals must be one of \"model_se\", \"bootstrap_se\" ",
       "or \"bootstrap_per\""
     )
+  }
 
   # Covariates
   if (!is.null(covar)) {
     covar <- model.matrix(as.formula(~.), data = covar)[, -1, drop = FALSE]
-    if (any(is.na(covar)))
+    if (any(is.na(covar))) {
       stop("there are missing values in the covariates")
+    }
   }
 
   # x0 (IV-Free)
@@ -584,9 +598,8 @@ print.summary.fracpoly_mr <- function(x, ...) {
 #'
 #' @noRd
 #' @md
-fracpoly_best <- function(
-  coef, coef_se, xmean, d = 1, pd = 0.05, method = "FE"
-) {
+fracpoly_best <- function(coef, coef_se, xmean,
+  d = 1, pd = 0.05, method = "FE") {
 
   # FP degree 1
   powers <- c(0, -3, -2, -1.5, -1, -0.5, 1, 2)
@@ -689,19 +702,21 @@ fracpoly_best <- function(
   }
   if (d == 1) {
     model <- fp1
-    if (length(model$b) != 1)
+    if (length(model$b) != 1) {
       stop(
         "incorrect number of parameters for best fitting fractional ",
         "polynomial of degree 1"
       )
+    }
   }
   if (d == 2) {
     model <- fp2
-    if (length(model$b) != 2)
+    if (length(model$b) != 2) {
       stop(
         "incorrect number of parameters for best fitting fractional ",
         "polynomial of degree 2"
       )
+    }
   }
 
   # Ouptut
@@ -775,11 +790,9 @@ fracpoly_best <- function(
 #'
 #' @noRd
 #' @md
-fracpoly_boot <- function(
-  y, x, g, covar, q, x0q, xcoef,
+fracpoly_boot <- function(y, x, g, covar, q, x0q, xcoef,
   family = "gaussian", xpos = "mean", method = "FE",
-  nboot, d, p_ML = NULL, p1_ML = NULL, p2_ML = NULL
-) {
+  nboot, d, p_ML = NULL, p1_ML = NULL, p2_ML = NULL) {
 
   # Set-up
   frac_coef_boot <- matrix(0, nrow = nboot, ncol = d)
@@ -823,11 +836,12 @@ fracpoly_boot <- function(
         vi = (coef_se_boot)^2,
         method = method
       )
-      if (length(mod$b) != 1)
+      if (length(mod$b) != 1) {
         stop(
           "incorrect number of parameters for best fitting fractional ",
           "polynomial of degree 1 in bootstrap sample"
         )
+      }
       frac_coef_boot[i, 1] <- mod$b[1]
     } else {
       if (p1_ML == -1) {
@@ -854,14 +868,16 @@ fracpoly_boot <- function(
         vi = (coef_se_boot)^2,
         method = method
       )
-      if (length(mod$b) != 2)
+      if (length(mod$b) != 2) {
         stop(
           "incorrect number of parameters for best fitting fractional ",
           "polynomial of degree 2 in bootstrap sample"
         )
+      }
       frac_coef_boot[i, 1] <- mod$b[1]
       frac_coef_boot[i, 2] <- mod$b[2]
     }
+
   }
 
   # Return
@@ -939,14 +955,11 @@ fracpoly_boot <- function(
 #'
 #' @noRd
 #' @md
-fracpoly_figure <- function(
-  beta, cov, x.min, x.max,
-  family = "gaussian", d = 1,
-  p_ML = NULL, p1_ML = NULL, p2_ML = NULL, ci = "model_se",
-  frac_coef_boot = NULL, ref,
+fracpoly_figure <- function(beta, cov, x.min, x.max, family = "gaussian",
+  d = 1, p_ML = NULL, p1_ML = NULL, p2_ML = NULL,
+  ci = "model_se", frac_coef_boot = NULL, ref,
   pref_x = "x", pref_x_ref = "x", pref_y = "y",
-  ci_type = "overall", ci_quantiles = 10, breaks = NULL
-) {
+  ci_type = "overall", ci_quantiles = 10, breaks = NULL) {
 
   if (ci_type == "overall") {
     plot.data <- data.frame(x = runif(10000, x.min, x.max))
