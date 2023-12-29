@@ -285,18 +285,18 @@ p-value from the trend test (<code>trend</code>).</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Estimate Std. Error 95%CI Lower 95%CI Upper   p.value    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.141112   0.012526    0.116561      0.1657 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 0.146884   0.015054    0.117378      0.1764 &lt; 2.2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Non-linearity tests</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fractional polynomial degree p-value: 0.314</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Fractional polynomial non-linearity p-value: 0.0904</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Quadratic p-value: 0.0323</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Cochran Q p-value: 0.0684</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fractional polynomial degree p-value: 0.572</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Fractional polynomial non-linearity p-value: 0.000468</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quadratic p-value: 0.000306</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cochran Q p-value: 0.0201</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Heterogeneity tests</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Cochran Q p-value: 0.0347</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cochran Q p-value: 0.075</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Trend p-value: 0.62</span>
 <span class="r-plt img"><img src="fracpoly_mr-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="va">plm</span> <span class="op">&lt;-</span> <span class="fu"><a href="piecewise_mr.html">piecewise_mr</a></span><span class="op">(</span></span></span>
@@ -310,27 +310,27 @@ p-value from the trend test (<code>trend</code>).</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Number of individuals: 10000; Quantiles: 10; Number of bootstrap replications: 100</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LACE:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Estimate Std. Error 95%CI Lower 95%CI Upper   p.value    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.711438   0.185833    0.347206      1.0757 0.0001290 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.702103   0.205007    0.300289      1.1039 0.0006153 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.392346   0.192086    0.015858      0.7688 0.0410965 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0.442290   0.188326    0.073172      0.8114 0.0188472 *  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.522340   0.202151    0.126125      0.9186 0.0097686 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  1.044161   0.201680    0.648868      1.4395 2.251e-07 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  0.613201   0.200216    0.220778      1.0056 0.0021935 ** </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  0.868094   0.193667    0.488506      1.2477 7.381e-06 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  1.236809   0.204057    0.836857      1.6368 1.352e-09 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 0.756416   0.368666    0.033831      1.4790 0.0401925 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     Estimate Std. Error 95%CI Lower 95%CI Upper   p.value    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   0.502551   0.235050    0.041854      0.9632 0.0325116 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   0.525561   0.240171    0.054826      0.9963 0.0286492 *  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   0.355502   0.238228   -0.111425      0.8224 0.1356267    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   0.647470   0.236573    0.183788      1.1112 0.0062025 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   0.256996   0.212722   -0.159938      0.6739 0.2269957    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   0.720240   0.233098    0.263368      1.1771 0.0020025 ** </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   0.814371   0.223642    0.376032      1.2527 0.0002712 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8   1.106210   0.241415    0.633036      1.5794 4.601e-06 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9   1.367573   0.247164    0.883131      1.8520 3.147e-08 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10  1.275299   0.460190    0.373328      2.1773 0.0055842 ** </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Non-linearity tests</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Quadratic p-value: 0.0323</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Cochran Q p-value: 0.0684</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quadratic p-value: 0.000306</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cochran Q p-value: 0.0201</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Heterogeneity tests</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Cochran Q p-value: 0.0347</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Trend p-value: 0.761</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Cochran Q p-value: 0.075</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Trend p-value: 0.829</span>
 <span class="r-plt img"><img src="fracpoly_mr-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
