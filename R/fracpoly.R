@@ -40,7 +40,7 @@
 #'   of degree 2 over the best-fitting fractional polynomial degree 1, used only
 #'   if `d = "both"` (default: `0.05`)
 #'
-#' @param ci the type of 95\% confidence interval, there are three options:
+#' @param ci the type of 95% confidence interval, there are three options:
 #'   (i) using the model standard errors (`"model_se"`),
 #'   (ii) using bootstrap standard errors (`"bootstrap_se"`), and
 #'   (iii) using bootstrap percentile confidence intervals (`"bootstrap_per"`)

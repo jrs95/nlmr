@@ -60,7 +60,7 @@ or \code{"both"} (default: \code{1})}
 of degree 2 over the best-fitting fractional polynomial degree 1, used only
 if \code{d = "both"} (default: \code{0.05})}
 
-\item{ci}{the type of 95\\% confidence interval, there are three options:
+\item{ci}{the type of 95\% confidence interval, there are three options:
 (i) using the model standard errors (\code{"model_se"}),
 (ii) using bootstrap standard errors (\code{"bootstrap_se"}), and
 (iii) using bootstrap percentile confidence intervals (\code{"bootstrap_per"})
